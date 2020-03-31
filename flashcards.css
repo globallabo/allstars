@@ -1,0 +1,72 @@
+@page ***REMOVED***
+  size: 148mm 100mm;
+  margin: 0;
+***REMOVED***
+
+@font-face ***REMOVED***
+  font-family: 'ZNuscript';
+  src: url('fonts/ZNuscript.ttf')  format('truetype');
+***REMOVED***
+@font-face ***REMOVED***
+  font-family: 'ZNuscriptHeavy';
+  src: url('fonts/ZNuscriptHeavy.ttf')  format('truetype');
+***REMOVED***
+
+section ***REMOVED***
+  page-break-after: always;
+  page-break-inside: avoid;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start; */
+***REMOVED***
+
+.content***REMOVED***
+  margin: 5mm 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+***REMOVED***
+img.logo ***REMOVED***
+  height: 10mm;
+  width: 23mm;
+***REMOVED***
+img.logo-rotated ***REMOVED***
+  margin: 5mm;
+  height: 23mm;
+  width: 10mm;
+***REMOVED***
+.vocab-img ***REMOVED***
+  margin: 0;
+  width: 121mm;
+  height: 90mm;
+***REMOVED***
+.vocab-word ***REMOVED***
+  width: 100%;
+  font-family: 'ZNuscriptHeavy';
+  font-size: 75pt;
+  line-height: 75mm;
+  text-align: center;
+***REMOVED***
+.vocabulary p ***REMOVED***
+  margin: 0;
+  padding: 0;
+***REMOVED***
+
+footer ***REMOVED***
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: 'ZNuscriptHeavy';
+***REMOVED***
+footer .label ***REMOVED***
+***REMOVED***
+footer img.cornerstar ***REMOVED***
+  width: 5mm;
+***REMOVED***
