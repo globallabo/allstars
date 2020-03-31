@@ -1,0 +1,294 @@
+@page ***REMOVED***
+  size: B5;
+  margin: 0;
+***REMOVED***
+
+@font-face ***REMOVED***
+  font-family: 'ZNuscript';
+  src: url('fonts/ZNuscript.ttf')  format('truetype');
+***REMOVED***
+@font-face ***REMOVED***
+  font-family: 'ZNuscriptHeavy';
+  src: url('fonts/ZNuscriptHeavy.ttf')  format('truetype');
+***REMOVED***
+@font-face ***REMOVED***
+  font-family: 'ZNuscriptArrowsGuidedNL';
+  src: url('fonts/ZNuscriptArrowsGuidedNL.ttf')  format('truetype');
+***REMOVED***
+@font-face ***REMOVED***
+  font-family: 'ZNuscriptDottedArrowsGuidedNL';
+  src: url('fonts/ZNuscriptDottedArrowsGuidedNL.ttf')  format('truetype');
+***REMOVED***
+@font-face ***REMOVED***
+  font-family: 'ZNuscriptDottedGuidedNL';
+  src: url('fonts/ZNuscriptDottedGuidedNL.ttf')  format('truetype');
+***REMOVED***
+@font-face ***REMOVED***
+  font-family: 'NotoSansJP-Light';
+  src: url('fonts/NotoSansJP-Light.otf')  format('opentype');
+***REMOVED***
+@font-face ***REMOVED***
+  font-family: 'EPMARUGO';
+  src: url('fonts/EPMARUGO.TTF')  format('truetype');
+***REMOVED***
+@font-face ***REMOVED***
+  font-family: 'Osaka';
+  src: url('fonts/Osaka.ttf')  format('truetype');
+***REMOVED***
+@font-face ***REMOVED***
+  font-family: 'MPLUSRounded1c-Light';
+  src: url('fonts/MPLUSRounded1c-Light.ttf')  format('truetype');
+***REMOVED***
+@font-face ***REMOVED***
+  font-family: 'UDDigiKyokashoNK-R';
+  src: url('fonts/UDDigiKyokashoNK-R.ttf')  format('truetype');
+***REMOVED***
+
+p ***REMOVED***
+  margin: 6pt;
+***REMOVED***
+
+header ***REMOVED***
+/*background-color: green;*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 16mm;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+***REMOVED***
+header img.logo ***REMOVED***
+  height: 10mm;
+  width: 23mm;
+  margin: 0 5mm;
+***REMOVED***
+header .label ***REMOVED***
+  width: 115mm;
+  border-bottom: 0.5pt solid black;
+  font-size: 18pt;
+  font-family: 'ZNuscript';
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+***REMOVED***
+footer ***REMOVED***
+/*background-color: red;*/
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: 'ZNuscriptHeavy';
+***REMOVED***
+footer .name, footer .date ***REMOVED***
+  font-size: 14pt;
+  border-top: 0.5pt solid black;
+  text-align: center;
+***REMOVED***
+footer .name ***REMOVED***
+  margin-left: 2mm;
+  margin-bottom: 1rem;
+  width: 90mm;
+***REMOVED***
+footer .date ***REMOVED***
+  margin-bottom: 1rem;
+  width: 40mm;
+***REMOVED***
+footer .stamp-teacher ***REMOVED***
+  width: 20mm;
+  height: 25mm;
+  margin-bottom: 5mm;
+  border: 0.5pt solid black;
+***REMOVED***
+footer .stamp-teacher .stamp-label-en ***REMOVED***
+  top: 0;
+  width: 100%;
+  height: 5mm;
+  border-bottom: 0.5pt solid black;
+  background-color: lightgray;
+  background-clip: padding-box;
+  font-family: 'ZNuscriptHeavy';
+  font-size: 18pt;
+  text-align: center;
+***REMOVED***
+.first-page .stamp-teacher ***REMOVED***
+  visibility: hidden;
+***REMOVED***
+.last-page footer ***REMOVED***
+  display: block;
+***REMOVED***
+.last-page footer .name-date ***REMOVED***
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+***REMOVED***
+.last-page footer .name-date .date ***REMOVED***
+  margin-left: 2mm;
+***REMOVED***
+.last-page footer .stamps ***REMOVED***
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+***REMOVED***
+footer .stamp-key ***REMOVED***
+  text-align: center;
+  /*font-family: 'UDDigiKyokashoNK-R';*/
+  line-height: 1.3rem;
+  margin-bottom: 5mm;
+***REMOVED***
+footer .stamp-parent ***REMOVED***
+  display: flex;
+  flex-direction: row;
+  margin: 0 20mm 5mm 2mm;
+  width: 80mm;
+  height: 25mm;
+  border: 0.5pt solid black;
+***REMOVED***
+footer .stamp-parent div ***REMOVED***
+  width: 20mm;
+  height: 25mm;
+  border-right: 0.5pt solid black;
+***REMOVED***
+footer .stamp-parent div:last-of-type ***REMOVED***
+  border-right: 0;
+***REMOVED***
+footer .stamp-parent .stamp-label-jp ***REMOVED***
+  top: 0;
+  width: 100%;
+  height: 5mm;
+  line-height: 5mm;
+  border-bottom: 0.5pt solid black;
+  background-color: lightgray;
+  background-clip: padding-box;
+  font-family: 'UDDigiKyokashoNK-R';
+  font-size: 10pt;
+  text-align: center;
+***REMOVED***
+footer img.cornerstar ***REMOVED***
+  width: 5mm;
+***REMOVED***
+
+section ***REMOVED***
+  page-break-after: always;
+  page-break-inside: avoid;
+***REMOVED***
+
+.story-and-image ***REMOVED***
+  margin: 5mm 0 5mm 5mm;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+***REMOVED***
+.story ***REMOVED***
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100mm;
+  border: 1pt solid #ed7c31;
+  border-radius: 5mm;
+  margin: 0;
+  padding: 6pt;
+  text-align: center;
+***REMOVED***
+.story-english, .vocab-english ***REMOVED***
+  font-family: 'ZNuscriptHeavy';
+  font-size: 22pt;
+  margin: 0 0 6pt 0;
+  line-height: normal;
+***REMOVED***
+.story-japanese, .vocab-japanese ***REMOVED***
+  font-family: 'UDDigiKyokashoNK-R';
+  font-size: 10pt;
+  margin: 0;
+  line-height: normal;
+***REMOVED***
+.story-img, .vocab-img ***REMOVED***
+  width: 65mm;
+  height: 49mm;
+***REMOVED***
+.vocabulary ***REMOVED***
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+***REMOVED***
+.vocabulary div ***REMOVED***
+/*background-color: gray;*/
+  width: 75mm;
+  padding: 5mm;
+  text-align: center;
+***REMOVED***
+.vocabulary p ***REMOVED***
+  margin: 0;
+  padding: 0;
+***REMOVED***
+
+.sentences-presentation ***REMOVED***
+  display: flex;
+  flex-direction: column;
+  margin: 10mm 0 0 25mm
+***REMOVED***
+.sentence-presentation ***REMOVED***
+  display: flex;
+  flex-direction: row;
+  border-bottom: 0.5pt solid black;
+  padding: 3mm 5mm 2mm 2mm;
+  position: relative;
+***REMOVED***
+.sentence-presentation:last-of-type ***REMOVED***
+  border-bottom: none;
+***REMOVED***
+.sentences ***REMOVED***
+  width: 80mm;
+***REMOVED***
+.sentences p.vocab-japanese ***REMOVED***
+  margin-bottom: 12pt;
+***REMOVED***
+.sentence-presentation img ***REMOVED***
+  width: 50mm;
+  z-index: 1;
+***REMOVED***
+.yes-no ***REMOVED***
+  /* position: absolute;
+  top: 3mm;
+  left: 42mm; */
+  margin-left: -50mm;
+  width: 50mm;
+  z-index: 2;
+***REMOVED***
+
+.sentences-writing ***REMOVED***
+  text-align: center;
+***REMOVED***
+.sentences-writing p ***REMOVED***
+  margin: 0.7em 0;
+***REMOVED***
+p.spaced ***REMOVED***
+  letter-spacing: 4pt;
+***REMOVED***
+p.sentence-example-normal ***REMOVED***
+  font-family: 'ZNuscript';
+  font-size: 48pt;
+***REMOVED***
+p.sentence-example-arrows-guided ***REMOVED***
+  font-family: 'ZNuscriptArrowsGuidedNL';
+  font-size: 48pt;
+***REMOVED***
+p.sentence-tracing-dotted-arrows-guided ***REMOVED***
+  font-family: 'ZNuscriptDottedArrowsGuidedNL';
+  font-size: 48pt;
+***REMOVED***
+p.sentence-tracing-dotted-guided ***REMOVED***
+  font-family: 'ZNuscriptDottedGuidedNL';
+  font-size: 48pt;
+***REMOVED***
+p.sentence-writing-guided ***REMOVED***
+  font-family: 'ZNuscriptDottedGuidedNL';
+  font-size: 48pt;
+***REMOVED***
