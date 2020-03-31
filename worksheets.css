@@ -232,7 +232,7 @@ section ***REMOVED***
 .sentences-presentation ***REMOVED***
   display: flex;
   flex-direction: column;
-  margin: 10mm 0 0 25mm
+  margin: 10mm 0 0 25mm;
 ***REMOVED***
 .sentence-presentation ***REMOVED***
   display: flex;
@@ -244,11 +244,18 @@ section ***REMOVED***
 .sentence-presentation:last-of-type ***REMOVED***
   border-bottom: none;
 ***REMOVED***
+.sentence-presentation.level2 ***REMOVED***
+  border-bottom: none;
+  padding-bottom: 3mm;
+***REMOVED***
 .sentences ***REMOVED***
   width: 80mm;
 ***REMOVED***
+.sentences.level2 ***REMOVED***
+  width: 100%;
+***REMOVED***
 .sentences p.vocab-japanese ***REMOVED***
-  margin-bottom: 12pt;
+  margin-bottom: 6pt;
 ***REMOVED***
 .sentence-presentation img ***REMOVED***
   width: 50mm;
@@ -268,6 +275,9 @@ section ***REMOVED***
 ***REMOVED***
 .sentences-writing p ***REMOVED***
   margin: 0.7em 0;
+***REMOVED***
+.sentences-writing.level2 p ***REMOVED***
+  margin: 0.4em 0;
 ***REMOVED***
 p.spaced ***REMOVED***
   letter-spacing: 4pt;
@@ -291,4 +301,14 @@ p.sentence-tracing-dotted-guided ***REMOVED***
 p.sentence-writing-guided ***REMOVED***
   font-family: 'ZNuscriptDottedGuidedNL';
   font-size: 48pt;
+***REMOVED***
+p.spaced.level2 ***REMOVED***
+  letter-spacing: 2pt;
+***REMOVED***
+p.sentence-example-normal.level2,
+p.sentence-example-arrows-guided.level2,
+p.sentence-tracing-dotted-arrows-guided.level2,
+p.sentence-tracing-dotted-guided.level2,
+p.sentence-writing-guided.level2 ***REMOVED***
+  font-size: 30pt;
 ***REMOVED***
