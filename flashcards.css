@@ -43,15 +43,17 @@ img.logo-rotated ***REMOVED***
   height: 90mm;
 ***REMOVED***
 .vocab-word ***REMOVED***
-  width: 100%;
+  height: 70mm;
+  width: 138mm;
+  margin: 5mm;
   font-family: 'ZNuscriptHeavy';
   font-size: 75pt;
-  line-height: 75mm;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-***REMOVED***
-.vocabulary p ***REMOVED***
-  margin: 0;
-  padding: 0;
 ***REMOVED***
 
 footer ***REMOVED***
