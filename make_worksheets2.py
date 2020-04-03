@@ -20,7 +20,7 @@ css_filename = "worksheets.css"
 css_file = open(css_filename, "r")
 css_string = css_file.read()
 
-output_path = "/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/"
+output_path = "/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output2/"
 
 # Fetch data from Google Sheet
 scope = ["https://spreadsheets.google.com/feeds",
@@ -144,11 +144,11 @@ for unit in range(1, numUnits+1):
         f_level = str(level)
         f_unit = str(unit).zfill(2)
         f_lesson = str(lesson).zfill(2)
-        html.write_pdf('***REMOVED******REMOVED***AS***REMOVED******REMOVED***U***REMOVED******REMOVED***L***REMOVED******REMOVED***.pdf'.format(output_path, f_level, f_unit, f_lesson))
+        html.write_pdf('{}AS{}U{}L{}.pdf'.format(output_path, f_level, f_unit, f_lesson))
 
         # Advance to the next row of stories and vocab
         row += 3
         # stop after one Lesson
         # break
     # stop after one Unit
-    break
+    # break

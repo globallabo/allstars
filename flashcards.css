@@ -1,48 +1,48 @@
-@page ***REMOVED***
+@page {
   size: 148mm 100mm;
   margin: 0;
-***REMOVED***
+}
 
-@font-face ***REMOVED***
+@font-face {
   font-family: 'ZNuscript';
   src: url('fonts/ZNuscript.ttf')  format('truetype');
-***REMOVED***
-@font-face ***REMOVED***
+}
+@font-face {
   font-family: 'ZNuscriptHeavy';
   src: url('fonts/ZNuscriptHeavy.ttf')  format('truetype');
-***REMOVED***
+}
 
-section ***REMOVED***
+section {
   page-break-after: always;
   page-break-inside: avoid;
   /* display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start; */
-***REMOVED***
+}
 
-.content***REMOVED***
+.content{
   margin: 5mm 0;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-***REMOVED***
-img.logo ***REMOVED***
+}
+img.logo {
   height: 10mm;
   width: 23mm;
-***REMOVED***
-img.logo-rotated ***REMOVED***
+}
+img.logo-rotated {
   margin: 5mm;
   height: 23mm;
   width: 10mm;
-***REMOVED***
-.vocab-img ***REMOVED***
+}
+.vocab-img {
   margin: 0;
   width: 121mm;
   height: 90mm;
-***REMOVED***
-.vocab-word ***REMOVED***
+}
+.vocab-word {
   height: 70mm;
   width: 138mm;
   margin: 5mm;
@@ -54,9 +54,9 @@ img.logo-rotated ***REMOVED***
   justify-content: center;
   align-items: center;
   text-align: center;
-***REMOVED***
+}
 
-footer ***REMOVED***
+footer {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -66,9 +66,9 @@ footer ***REMOVED***
   justify-content: space-between;
   align-items: flex-end;
   font-family: 'ZNuscriptHeavy';
-***REMOVED***
-footer .label ***REMOVED***
-***REMOVED***
-footer img.cornerstar ***REMOVED***
+}
+footer .label {
+}
+footer img.cornerstar {
   width: 5mm;
-***REMOVED***
+}

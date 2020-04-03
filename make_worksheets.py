@@ -92,15 +92,20 @@ for unit in range(1, numUnits+1):
         print(template_mapping["image_overlay"])
         for k in range(1, 5):
             vocab_en.append(data[row][column+k])
-            # print("English vocab" + str(k) + ": " + vocab_en[k-1])
-            # -1 because the range is 1-5, while the list is 0-4
-            template_mapping["vocab" + str(k) + "_en"] = vocab_en[k-1]
-            vocab_jp.append(data[row+1][column+k])
-            # print("Japanese vocab" + str(k) + ": " + vocab_jp[k-1])
-            # -1 because the range is 1-5, while the list is 0-4
-            template_mapping["vocab" + str(k) + "_jp"] = vocab_jp[k-1]
-            # Map the vocab image numbers for pages 1 and 2
-            template_mapping["vocab_img" + str(k)] = vocab_nums[k-1]
+            # At least one lesson has fewer than four vocab words
+            if not vocab_en[k-1]:
+                print("Vocab " + str(k) + " is empty.")
+                template_mapping["no_vocab4"] = "no_vocab4"
+            else:
+                print("English vocab" + str(k) + ": " + vocab_en[k-1])
+                # -1 because the range is 1-5, while the list is 0-4
+                template_mapping["vocab" + str(k) + "_en"] = vocab_en[k-1]
+                vocab_jp.append(data[row+1][column+k])
+                # print("Japanese vocab" + str(k) + ": " + vocab_jp[k-1])
+                # -1 because the range is 1-5, while the list is 0-4
+                template_mapping["vocab" + str(k) + "_jp"] = vocab_jp[k-1]
+                # Map the vocab image numbers for pages 1 and 2
+                template_mapping["vocab_img" + str(k)] = vocab_nums[k-1]
 
         # reading sentences
         rsentence1a_en = data[row][column+5]
@@ -179,7 +184,7 @@ for unit in range(1, numUnits+1):
         f_level = str(level)
         f_unit = str(unit).zfill(2)
         f_lesson = str(lesson).zfill(2)
-        html.write_pdf('***REMOVED******REMOVED***AS***REMOVED******REMOVED***U***REMOVED******REMOVED***L***REMOVED******REMOVED***.pdf'.format(output_path, f_level, f_unit, f_lesson))
+        html.write_pdf('{}AS{}U{}L{}.pdf'.format(output_path, f_level, f_unit, f_lesson))
 
         # Advance to the next row of stories and vocab
         row += 3

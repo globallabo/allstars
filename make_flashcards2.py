@@ -98,8 +98,8 @@ for unit in range(1, numUnits+1):
     #                font_config=font_config)
     f_level = str(level)
     f_unit = str(unit).zfill(2)
-    html_word.write_pdf('***REMOVED******REMOVED***AS***REMOVED******REMOVED***U***REMOVED******REMOVED***-word_flashcards.pdf'.format(output_path, f_level, f_unit))
-    # html_image.write_pdf('***REMOVED******REMOVED***AS***REMOVED******REMOVED***U***REMOVED******REMOVED***-image_flashcards.pdf'.format(output_path, f_level, f_unit))
+    html_word.write_pdf('{}AS{}U{}-word_flashcards.pdf'.format(output_path, f_level, f_unit))
+    # html_image.write_pdf('{}AS{}U{}-image_flashcards.pdf'.format(output_path, f_level, f_unit))
 
     # Advance to the next unit
     row += 12

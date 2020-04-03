@@ -1,54 +1,54 @@
-@page ***REMOVED***
+@page {
   size: B5;
   margin: 0;
-***REMOVED***
+}
 
-@font-face ***REMOVED***
+@font-face {
   font-family: 'ZNuscript';
   src: url('fonts/ZNuscript.ttf')  format('truetype');
-***REMOVED***
-@font-face ***REMOVED***
+}
+@font-face {
   font-family: 'ZNuscriptHeavy';
   src: url('fonts/ZNuscriptHeavy.ttf')  format('truetype');
-***REMOVED***
-@font-face ***REMOVED***
+}
+@font-face {
   font-family: 'ZNuscriptArrowsGuidedNL';
   src: url('fonts/ZNuscriptArrowsGuidedNL.ttf')  format('truetype');
-***REMOVED***
-@font-face ***REMOVED***
+}
+@font-face {
   font-family: 'ZNuscriptDottedArrowsGuidedNL';
   src: url('fonts/ZNuscriptDottedArrowsGuidedNL.ttf')  format('truetype');
-***REMOVED***
-@font-face ***REMOVED***
+}
+@font-face {
   font-family: 'ZNuscriptDottedGuidedNL';
   src: url('fonts/ZNuscriptDottedGuidedNL.ttf')  format('truetype');
-***REMOVED***
-@font-face ***REMOVED***
+}
+@font-face {
   font-family: 'NotoSansJP-Light';
   src: url('fonts/NotoSansJP-Light.otf')  format('opentype');
-***REMOVED***
-@font-face ***REMOVED***
+}
+@font-face {
   font-family: 'EPMARUGO';
   src: url('fonts/EPMARUGO.TTF')  format('truetype');
-***REMOVED***
-@font-face ***REMOVED***
+}
+@font-face {
   font-family: 'Osaka';
   src: url('fonts/Osaka.ttf')  format('truetype');
-***REMOVED***
-@font-face ***REMOVED***
+}
+@font-face {
   font-family: 'MPLUSRounded1c-Light';
   src: url('fonts/MPLUSRounded1c-Light.ttf')  format('truetype');
-***REMOVED***
-@font-face ***REMOVED***
+}
+@font-face {
   font-family: 'UDDigiKyokashoNK-R';
   src: url('fonts/UDDigiKyokashoNK-R.ttf')  format('truetype');
-***REMOVED***
+}
 
-p ***REMOVED***
+p {
   margin: 6pt;
-***REMOVED***
+}
 
-header ***REMOVED***
+header {
 /*background-color: green;*/
   top: 0;
   left: 0;
@@ -58,13 +58,13 @@ header ***REMOVED***
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-***REMOVED***
-header img.logo ***REMOVED***
+}
+header img.logo {
   height: 10mm;
   width: 23mm;
   margin: 0 5mm;
-***REMOVED***
-header .label ***REMOVED***
+}
+header .label {
   width: 115mm;
   border-bottom: 0.5pt solid black;
   font-size: 18pt;
@@ -72,8 +72,8 @@ header .label ***REMOVED***
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-***REMOVED***
-footer ***REMOVED***
+}
+footer {
 /*background-color: red;*/
   position: absolute;
   bottom: 0;
@@ -84,28 +84,28 @@ footer ***REMOVED***
   justify-content: space-between;
   align-items: flex-end;
   font-family: 'ZNuscriptHeavy';
-***REMOVED***
-footer .name, footer .date ***REMOVED***
+}
+footer .name, footer .date {
   font-size: 14pt;
   border-top: 0.5pt solid black;
   text-align: center;
-***REMOVED***
-footer .name ***REMOVED***
+}
+footer .name {
   margin-left: 2mm;
   margin-bottom: 1rem;
   width: 90mm;
-***REMOVED***
-footer .date ***REMOVED***
+}
+footer .date {
   margin-bottom: 1rem;
   width: 40mm;
-***REMOVED***
-footer .stamp-teacher ***REMOVED***
+}
+footer .stamp-teacher {
   width: 20mm;
   height: 25mm;
   margin-bottom: 5mm;
   border: 0.5pt solid black;
-***REMOVED***
-footer .stamp-teacher .stamp-label-en ***REMOVED***
+}
+footer .stamp-teacher .stamp-label-en {
   top: 0;
   width: 100%;
   height: 5mm;
@@ -115,50 +115,50 @@ footer .stamp-teacher .stamp-label-en ***REMOVED***
   font-family: 'ZNuscriptHeavy';
   font-size: 18pt;
   text-align: center;
-***REMOVED***
-.first-page .stamp-teacher ***REMOVED***
+}
+.first-page .stamp-teacher {
   visibility: hidden;
-***REMOVED***
-.last-page footer ***REMOVED***
+}
+.last-page footer {
   display: block;
-***REMOVED***
-.last-page footer .name-date ***REMOVED***
+}
+.last-page footer .name-date {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-***REMOVED***
-.last-page footer .name-date .date ***REMOVED***
+}
+.last-page footer .name-date .date {
   margin-left: 2mm;
-***REMOVED***
-.last-page footer .stamps ***REMOVED***
+}
+.last-page footer .stamps {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
-***REMOVED***
-footer .stamp-key ***REMOVED***
+}
+footer .stamp-key {
   text-align: center;
   /*font-family: 'UDDigiKyokashoNK-R';*/
   line-height: 1.3rem;
   margin-bottom: 5mm;
-***REMOVED***
-footer .stamp-parent ***REMOVED***
+}
+footer .stamp-parent {
   display: flex;
   flex-direction: row;
   margin: 0 20mm 5mm 2mm;
   width: 80mm;
   height: 25mm;
   border: 0.5pt solid black;
-***REMOVED***
-footer .stamp-parent div ***REMOVED***
+}
+footer .stamp-parent div {
   width: 20mm;
   height: 25mm;
   border-right: 0.5pt solid black;
-***REMOVED***
-footer .stamp-parent div:last-of-type ***REMOVED***
+}
+footer .stamp-parent div:last-of-type {
   border-right: 0;
-***REMOVED***
-footer .stamp-parent .stamp-label-jp ***REMOVED***
+}
+footer .stamp-parent .stamp-label-jp {
   top: 0;
   width: 100%;
   height: 5mm;
@@ -169,23 +169,23 @@ footer .stamp-parent .stamp-label-jp ***REMOVED***
   font-family: 'UDDigiKyokashoNK-R';
   font-size: 10pt;
   text-align: center;
-***REMOVED***
-footer img.cornerstar ***REMOVED***
+}
+footer img.cornerstar {
   width: 5mm;
-***REMOVED***
+}
 
-section ***REMOVED***
+section {
   page-break-after: always;
   page-break-inside: avoid;
-***REMOVED***
+}
 
-.story-and-image ***REMOVED***
+.story-and-image {
   margin: 5mm 0 5mm 5mm;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-***REMOVED***
-.story ***REMOVED***
+}
+.story {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -195,123 +195,126 @@ section ***REMOVED***
   margin: 0;
   padding: 6pt;
   text-align: center;
-***REMOVED***
-.story.level2 ***REMOVED***
+}
+.story.level2 {
   border-color: #5599ff;
-***REMOVED***
-.story-english, .vocab-english ***REMOVED***
+}
+.story-english, .vocab-english {
   font-family: 'ZNuscriptHeavy';
   font-size: 22pt;
   margin: 0 0 6pt 0;
   line-height: normal;
-***REMOVED***
-.story-japanese, .vocab-japanese ***REMOVED***
+}
+.story-japanese, .vocab-japanese {
   font-family: 'UDDigiKyokashoNK-R';
   font-size: 10pt;
   margin: 0;
   line-height: normal;
-***REMOVED***
-.story-img, .vocab-img ***REMOVED***
+}
+.story-img, .vocab-img {
   width: 65mm;
   height: 49mm;
-***REMOVED***
-.vocabulary ***REMOVED***
+}
+.vocabulary {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-***REMOVED***
-.vocabulary div ***REMOVED***
+}
+.vocabulary div {
 /*background-color: gray;*/
   width: 75mm;
   padding: 5mm;
   text-align: center;
-***REMOVED***
-.vocabulary p ***REMOVED***
+}
+.vocabulary p {
   margin: 0;
   padding: 0;
-***REMOVED***
+}
 
-.sentences-presentation ***REMOVED***
+.sentences-presentation {
   display: flex;
   flex-direction: column;
   margin: 10mm 0 0 25mm;
-***REMOVED***
-.sentence-presentation ***REMOVED***
+}
+.sentence-presentation {
   display: flex;
   flex-direction: row;
   border-bottom: 0.5pt solid black;
   padding: 3mm 5mm 2mm 2mm;
   position: relative;
-***REMOVED***
-.sentence-presentation:last-of-type ***REMOVED***
+}
+.sentence-presentation:last-of-type {
   border-bottom: none;
-***REMOVED***
-.sentence-presentation.level2 ***REMOVED***
+}
+.sentence-presentation.level2 {
   border-bottom: none;
   padding-bottom: 3mm;
-***REMOVED***
-.sentences ***REMOVED***
+}
+.sentences {
   width: 80mm;
-***REMOVED***
-.sentences.level2 ***REMOVED***
+}
+.sentences.level2 {
   width: 100%;
-***REMOVED***
-.sentences p.vocab-japanese ***REMOVED***
+}
+.sentences p.vocab-japanese {
   margin-bottom: 6pt;
-***REMOVED***
-.sentence-presentation img ***REMOVED***
+}
+.sentence-presentation img {
   width: 50mm;
   z-index: 1;
-***REMOVED***
-.yes-no ***REMOVED***
+}
+.yes-no {
   /* position: absolute;
   top: 3mm;
   left: 42mm; */
   margin-left: -50mm;
   width: 50mm;
   z-index: 2;
-***REMOVED***
+}
+.sentence-presentation.no_vocab4, .vocab.no_vocab4 {
+  visibility: hidden;
+}
 
-.sentences-writing ***REMOVED***
+.sentences-writing {
   text-align: center;
-***REMOVED***
-.sentences-writing p ***REMOVED***
+}
+.sentences-writing p {
   margin: 0.7em 0;
-***REMOVED***
-.sentences-writing.level2 p ***REMOVED***
+}
+.sentences-writing.level2 p {
   margin: 0.4em 0;
-***REMOVED***
-p.spaced ***REMOVED***
+}
+p.spaced {
   letter-spacing: 4pt;
-***REMOVED***
-p.sentence-example-normal ***REMOVED***
+}
+p.sentence-example-normal {
   font-family: 'ZNuscript';
   font-size: 48pt;
-***REMOVED***
-p.sentence-example-arrows-guided ***REMOVED***
+}
+p.sentence-example-arrows-guided {
   font-family: 'ZNuscriptArrowsGuidedNL';
   font-size: 48pt;
-***REMOVED***
-p.sentence-tracing-dotted-arrows-guided ***REMOVED***
+}
+p.sentence-tracing-dotted-arrows-guided {
   font-family: 'ZNuscriptDottedArrowsGuidedNL';
   font-size: 48pt;
-***REMOVED***
-p.sentence-tracing-dotted-guided ***REMOVED***
+}
+p.sentence-tracing-dotted-guided {
   font-family: 'ZNuscriptDottedGuidedNL';
   font-size: 48pt;
-***REMOVED***
-p.sentence-writing-guided ***REMOVED***
+}
+p.sentence-writing-guided {
   font-family: 'ZNuscriptDottedGuidedNL';
   font-size: 48pt;
-***REMOVED***
-p.spaced.level2 ***REMOVED***
+}
+p.spaced.level2 {
   letter-spacing: 2pt;
-***REMOVED***
+}
 p.sentence-example-normal.level2,
 p.sentence-example-arrows-guided.level2,
 p.sentence-tracing-dotted-arrows-guided.level2,
 p.sentence-tracing-dotted-guided.level2,
-p.sentence-writing-guided.level2 ***REMOVED***
+p.sentence-writing-guided.level2 {
   font-size: 30pt;
-***REMOVED***
+}

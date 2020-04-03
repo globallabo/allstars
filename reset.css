@@ -17,7 +17,7 @@ fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video ***REMOVED***
+time, mark, audio, video {
     margin:0;
     padding:0;
     border:0;
@@ -25,80 +25,80 @@ time, mark, audio, video ***REMOVED***
     font-size:100%;
     vertical-align:baseline;
     background:transparent;
-***REMOVED***
+}
 
-body ***REMOVED***
+body {
     line-height:1;
-***REMOVED***
+}
 
 article,aside,details,figcaption,figure,
-footer,header,hgroup,menu,nav,section ***REMOVED***
+footer,header,hgroup,menu,nav,section {
     display:block;
-***REMOVED***
+}
 
-nav ul ***REMOVED***
+nav ul {
     list-style:none;
-***REMOVED***
+}
 
 /* Weasyprint doesn't like this setting
-blockquote, q ***REMOVED***
+blockquote, q {
     quotes:none;
-***REMOVED***
+}
 */
 
 blockquote:before, blockquote:after,
-q:before, q:after ***REMOVED***
+q:before, q:after {
     content:'';
     content:none;
-***REMOVED***
+}
 
-a ***REMOVED***
+a {
     margin:0;
     padding:0;
     font-size:100%;
     vertical-align:baseline;
     background:transparent;
-***REMOVED***
+}
 
 /* change colours to suit your needs */
-ins ***REMOVED***
+ins {
     background-color:#ff9;
     color:#000;
     text-decoration:none;
-***REMOVED***
+}
 
 /* change colours to suit your needs */
-mark ***REMOVED***
+mark {
     background-color:#ff9;
     color:#000;
     font-style:italic;
     font-weight:bold;
-***REMOVED***
+}
 
-del ***REMOVED***
+del {
     text-decoration: line-through;
-***REMOVED***
+}
 
-abbr[title], dfn[title] ***REMOVED***
+abbr[title], dfn[title] {
     border-bottom:1px dotted;
     cursor:help;
-***REMOVED***
+}
 
-table ***REMOVED***
+table {
     border-collapse:collapse;
     border-spacing:0;
-***REMOVED***
+}
 
 /* change border colour to suit your needs */
-hr ***REMOVED***
+hr {
     display:block;
     height:1px;
     border:0;
     border-top:1px solid #cccccc;
     margin:1em 0;
     padding:0;
-***REMOVED***
+}
 
-input, select ***REMOVED***
+input, select {
     vertical-align:middle;
-***REMOVED***
+}
