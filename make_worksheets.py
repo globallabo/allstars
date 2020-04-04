@@ -35,8 +35,8 @@ data = sheet.get_all_values()
 # So far, we're only doing Level 1, but in the future, we'll have to deal
 #  with the others
 level = 1
-numUnits = 16
-numLessons = 4
+units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+lessons = [1, 2, 3, 4]
 
 # Set some HTML strings for the yes/no overlays
 image_overlay_yes = "<img class=\"yes-no\" src=\"images/yes.png\" alt=\"\">"
@@ -49,8 +49,8 @@ column = 3
 
 # Loop through all Units and Lessons
 #  (range() needs a +1 because it stops at the number before)
-for unit in range(1, numUnits+1):
-    for lesson in range(1, numLessons+1):
+for unit in units:
+    for lesson in lessons:
         # Create substitution mapping
         template_mapping = dict()
         template_mapping["level"] = level
