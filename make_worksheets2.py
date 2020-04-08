@@ -97,16 +97,6 @@ for unit in units:
         sentence4b_jp = data[row+1][column+12]
         template_mapping["sentence4b_jp"] = sentence4b_jp
 
-        # writing sentences - *** Not used in Levels other than 1 ***
-        wsentence1_en = data[row][column+13]
-        template_mapping["wsentence1_en"] = wsentence1_en
-        wsentence2_en = data[row][column+14]
-        template_mapping["wsentence2_en"] = wsentence2_en
-        wsentence1_jp = data[row+1][column+13]
-        template_mapping["wsentence1_jp"] = wsentence1_jp
-        wsentence2_jp = data[row+1][column+14]
-        template_mapping["wsentence2_jp"] = wsentence2_jp
-
         # Substitute
         template_filled = template_string.safe_substitute(template_mapping)
         html = HTML(string=template_filled)
