@@ -108,54 +108,54 @@ for unit in units:
                 template_mapping["vocab_img" + str(k)] = vocab_nums[k-1]
 
         # reading sentences
-        rsentence1a_en = data[row][column+5]
-        # print("English Reading Sentence 1A: " + rsentence1a_en)
-        template_mapping["rsentence1a_en"] = rsentence1a_en
-        rsentence1b_en = data[row][column+6]
-        # print("English Reading Sentence 1B: " + rsentence1b_en)
-        template_mapping["rsentence1b_en"] = rsentence1b_en
-        rsentence2a_en = data[row][column+7]
-        # print("English Reading Sentence 2A: " + rsentence2a_en)
-        template_mapping["rsentence2a_en"] = rsentence2a_en
-        rsentence2b_en = data[row][column+8]
-        # print("English Reading Sentence 2B: " + rsentence2b_en)
-        template_mapping["rsentence2b_en"] = rsentence2b_en
-        rsentence3a_en = data[row][column+9]
-        # print("English Reading Sentence 3A: " + rsentence3a_en)
-        template_mapping["rsentence3a_en"] = rsentence3a_en
-        rsentence3b_en = data[row][column+10]
-        # print("English Reading Sentence 3B: " + rsentence3b_en)
-        template_mapping["rsentence3b_en"] = rsentence3b_en
-        rsentence4a_en = data[row][column+11]
-        # print("English Reading Sentence 4A: " + rsentence4a_en)
-        template_mapping["rsentence4a_en"] = rsentence4a_en
-        rsentence4b_en = data[row][column+12]
-        # print("English Reading Sentence 4B: " + rsentence4b_en)
-        template_mapping["rsentence4b_en"] = rsentence4b_en
-        rsentence1a_jp = data[row+1][column+5]
-        # print("Japanese Reading Sentence 1A: " + rsentence1a_jp)
-        template_mapping["rsentence1a_jp"] = rsentence1a_jp
-        rsentence1b_jp = data[row+1][column+6]
-        # print("Japanese Reading Sentence 1B: " + rsentence1b_jp)
-        template_mapping["rsentence1b_jp"] = rsentence1b_jp
-        rsentence2a_jp = data[row+1][column+7]
-        # print("Japanese Reading Sentence 2A: " + rsentence2a_jp)
-        template_mapping["rsentence2a_jp"] = rsentence2a_jp
-        rsentence2b_jp = data[row+1][column+8]
-        # print("Japanese Reading Sentence 2B: " + rsentence2b_jp)
-        template_mapping["rsentence2b_jp"] = rsentence2b_jp
-        rsentence3a_jp = data[row+1][column+9]
-        # print("Japanese Reading Sentence 3A: " + rsentence3a_jp)
-        template_mapping["rsentence3a_jp"] = rsentence3a_jp
-        rsentence3b_jp = data[row+1][column+10]
-        # print("Japanese Reading Sentence 3B: " + rsentence3b_jp)
-        template_mapping["rsentence3b_jp"] = rsentence3b_jp
-        rsentence4a_jp = data[row+1][column+11]
-        # print("Japanese Reading Sentence 4A: " + rsentence4a_jp)
-        template_mapping["rsentence4a_jp"] = rsentence4a_jp
-        rsentence4b_jp = data[row+1][column+12]
-        # print("Japanese Reading Sentence 4B: " + rsentence4b_jp)
-        template_mapping["rsentence4b_jp"] = rsentence4b_jp
+        sentence1a_en = data[row][column+5]
+        # print("English Reading Sentence 1A: " + sentence1a_en)
+        template_mapping["sentence1a_en"] = sentence1a_en
+        sentence1b_en = data[row][column+6]
+        # print("English Reading Sentence 1B: " + sentence1b_en)
+        template_mapping["sentence1b_en"] = sentence1b_en
+        sentence2a_en = data[row][column+7]
+        # print("English Reading Sentence 2A: " + sentence2a_en)
+        template_mapping["sentence2a_en"] = sentence2a_en
+        sentence2b_en = data[row][column+8]
+        # print("English Reading Sentence 2B: " + sentence2b_en)
+        template_mapping["sentence2b_en"] = sentence2b_en
+        sentence3a_en = data[row][column+9]
+        # print("English Reading Sentence 3A: " + sentence3a_en)
+        template_mapping["sentence3a_en"] = sentence3a_en
+        sentence3b_en = data[row][column+10]
+        # print("English Reading Sentence 3B: " + sentence3b_en)
+        template_mapping["sentence3b_en"] = sentence3b_en
+        sentence4a_en = data[row][column+11]
+        # print("English Reading Sentence 4A: " + sentence4a_en)
+        template_mapping["sentence4a_en"] = sentence4a_en
+        sentence4b_en = data[row][column+12]
+        # print("English Reading Sentence 4B: " + sentence4b_en)
+        template_mapping["sentence4b_en"] = sentence4b_en
+        sentence1a_jp = data[row+1][column+5]
+        # print("Japanese Reading Sentence 1A: " + sentence1a_jp)
+        template_mapping["sentence1a_jp"] = sentence1a_jp
+        sentence1b_jp = data[row+1][column+6]
+        # print("Japanese Reading Sentence 1B: " + sentence1b_jp)
+        template_mapping["sentence1b_jp"] = sentence1b_jp
+        sentence2a_jp = data[row+1][column+7]
+        # print("Japanese Reading Sentence 2A: " + sentence2a_jp)
+        template_mapping["sentence2a_jp"] = sentence2a_jp
+        sentence2b_jp = data[row+1][column+8]
+        # print("Japanese Reading Sentence 2B: " + sentence2b_jp)
+        template_mapping["sentence2b_jp"] = sentence2b_jp
+        sentence3a_jp = data[row+1][column+9]
+        # print("Japanese Reading Sentence 3A: " + sentence3a_jp)
+        template_mapping["sentence3a_jp"] = sentence3a_jp
+        sentence3b_jp = data[row+1][column+10]
+        # print("Japanese Reading Sentence 3B: " + sentence3b_jp)
+        template_mapping["sentence3b_jp"] = sentence3b_jp
+        sentence4a_jp = data[row+1][column+11]
+        # print("Japanese Reading Sentence 4A: " + sentence4a_jp)
+        template_mapping["sentence4a_jp"] = sentence4a_jp
+        sentence4b_jp = data[row+1][column+12]
+        # print("Japanese Reading Sentence 4B: " + sentence4b_jp)
+        template_mapping["sentence4b_jp"] = sentence4b_jp
 
         # writing sentences
         wsentence1_en = data[row][column+13]
