@@ -318,3 +318,13 @@ p.sentence-tracing-dotted-guided.level2,
 p.sentence-writing-guided.level2 {
   font-size: 30pt;
 }
+p.sentence-example-normal.level2 {
+  font-size: 24pt;
+}
+p.sentence-writing.level3 {
+  font-size: 30pt;
+  width: 80%;
+  border-bottom: 1pt solid black;
+  /* margin: 0.5em auto 1em auto; */
+  line-height: 1em;
+}
