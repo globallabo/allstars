@@ -10,8 +10,10 @@ import logging
 logger = logging.getLogger('weasyprint')
 logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
 
-levels = [1, 2, 3]
-units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+# levels = [1, 2, 3]
+# units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+levels = [3]
+units = [1, 11, 15]
 
 for level in levels:
     # Create HTML template for image flashcards
@@ -49,6 +51,8 @@ for level in levels:
     # Loop through all Units and Lessons
     #  (range() needs a +1 because it stops at the number before)
     for unit in units:
+        # Set the row based on the unit
+        row = 1 + (unit-1) * 12
         template_mapping = dict()
         template_mapping["level"] = level
         # This is used for the page header:
@@ -103,6 +107,6 @@ for level in levels:
                 '{}AS{}U{}-image_flashcards.pdf'.format(output_path, f_level, f_unit))
 
         # Advance to the next unit
-        row += 12
+        # row += 12
         # stop after one Unit
-        break
+        # break
