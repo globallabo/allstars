@@ -326,5 +326,7 @@ p.sentence-writing.level3 {
   width: 80%;
   border-bottom: 1pt solid black;
   /* margin: 0.5em auto 1em auto; */
+  margin-left: auto;
+  margin-right: auto;
   line-height: 1em;
 }
