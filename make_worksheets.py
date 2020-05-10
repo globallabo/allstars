@@ -12,14 +12,15 @@ logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
 
 # So far, we're only doing Level 1, but in the future, we'll have to deal
 #  with the others
-levels = [3]
+levels = [1, 2, 3]
 units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 lessons = [1, 2, 3, 4]
 
 for level in levels:
+    print(f'Level {level}')
     # Create HTML template
     font_config = FontConfiguration()
-    template_filename = 'AS{}-worksheets-template.html'.format(level)
+    template_filename = f'AS{level}-worksheets-template.html'
     template_file = open(template_filename, "r")
     template_file_contents = template_file.read()
     template_string = Template(template_file_contents)
@@ -27,8 +28,7 @@ for level in levels:
     css_file = open(css_filename, "r")
     css_string = css_file.read()
 
-    output_path = '/Users/cbunn/Documents/Employment/5 Star/Google Drive/'\
-        'All Stars Second Edition/test-output2/Level {}/'.format(level)
+    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output3/Level {level}/'
 
     # Fetch data from Google Sheet
     scope = ["https://spreadsheets.google.com/feeds",
@@ -49,6 +49,9 @@ for level in levels:
     #  (range() needs a +1 because it stops at the number before)
     for unit in units:
         for lesson in lessons:
+            # Set the row based on the unit and lesson
+            row = 1 + ((unit-1) * 12) + ((lesson-1) * 3)
+
             # Create substitution mapping
             template_mapping = dict()
             template_mapping["level"] = level
@@ -59,11 +62,9 @@ for level in levels:
             template_mapping["unit_zfill"] = str(unit).zfill(2)
             template_mapping["lesson_zfill"] = str(lesson).zfill(2)
 
-            print("Unit: " + str(unit) + ", Lesson: " + str(lesson))
-            story_en = data[row][column]
-            template_mapping["story_en"] = story_en
-            story_jp = data[row+1][column]
-            template_mapping["story_jp"] = story_jp
+            print(f'Unit: {unit}, Lesson: {lesson}')
+            template_mapping["story_en"] = data[row][column]
+            template_mapping["story_jp"] = data[row+1][column]
 
             if level == 1:
                 # set list vars
@@ -99,48 +100,28 @@ for level in levels:
                         # Map the vocab image numbers for pages 1 and 2
                         template_mapping["vocab_img" + str(k)] = vocab_nums[k-1]
                 # writing sentences
-                wsentence1_en = data[row][column+13]
-                template_mapping["wsentence1_en"] = wsentence1_en
-                wsentence2_en = data[row][column+14]
-                template_mapping["wsentence2_en"] = wsentence2_en
-                wsentence1_jp = data[row+1][column+13]
-                template_mapping["wsentence1_jp"] = wsentence1_jp
-                wsentence2_jp = data[row+1][column+14]
-                template_mapping["wsentence2_jp"] = wsentence2_jp
+                template_mapping["wsentence1_en"] = data[row][column+13]
+                template_mapping["wsentence2_en"] = data[row][column+14]
+                template_mapping["wsentence1_jp"] = data[row+1][column+13]
+                template_mapping["wsentence2_jp"] = data[row+1][column+14]
 
             # reading sentences
-            sentence1a_en = data[row][column+5]
-            template_mapping["sentence1a_en"] = sentence1a_en
-            sentence1b_en = data[row][column+6]
-            template_mapping["sentence1b_en"] = sentence1b_en
-            sentence2a_en = data[row][column+7]
-            template_mapping["sentence2a_en"] = sentence2a_en
-            sentence2b_en = data[row][column+8]
-            template_mapping["sentence2b_en"] = sentence2b_en
-            sentence3a_en = data[row][column+9]
-            template_mapping["sentence3a_en"] = sentence3a_en
-            sentence3b_en = data[row][column+10]
-            template_mapping["sentence3b_en"] = sentence3b_en
-            sentence4a_en = data[row][column+11]
-            template_mapping["sentence4a_en"] = sentence4a_en
-            sentence4b_en = data[row][column+12]
-            template_mapping["sentence4b_en"] = sentence4b_en
-            sentence1a_jp = data[row+1][column+5]
-            template_mapping["sentence1a_jp"] = sentence1a_jp
-            sentence1b_jp = data[row+1][column+6]
-            template_mapping["sentence1b_jp"] = sentence1b_jp
-            sentence2a_jp = data[row+1][column+7]
-            template_mapping["sentence2a_jp"] = sentence2a_jp
-            sentence2b_jp = data[row+1][column+8]
-            template_mapping["sentence2b_jp"] = sentence2b_jp
-            sentence3a_jp = data[row+1][column+9]
-            template_mapping["sentence3a_jp"] = sentence3a_jp
-            sentence3b_jp = data[row+1][column+10]
-            template_mapping["sentence3b_jp"] = sentence3b_jp
-            sentence4a_jp = data[row+1][column+11]
-            template_mapping["sentence4a_jp"] = sentence4a_jp
-            sentence4b_jp = data[row+1][column+12]
-            template_mapping["sentence4b_jp"] = sentence4b_jp
+            template_mapping["sentence1a_en"] = data[row][column+5]
+            template_mapping["sentence1b_en"] = data[row][column+6]
+            template_mapping["sentence2a_en"] = data[row][column+7]
+            template_mapping["sentence2b_en"] = data[row][column+8]
+            template_mapping["sentence3a_en"] = data[row][column+9]
+            template_mapping["sentence3b_en"] = data[row][column+10]
+            template_mapping["sentence4a_en"] = data[row][column+11]
+            template_mapping["sentence4b_en"] = data[row][column+12]
+            template_mapping["sentence1a_jp"] = data[row+1][column+5]
+            template_mapping["sentence1b_jp"] = data[row+1][column+6]
+            template_mapping["sentence2a_jp"] = data[row+1][column+7]
+            template_mapping["sentence2b_jp"] = data[row+1][column+8]
+            template_mapping["sentence3a_jp"] = data[row+1][column+9]
+            template_mapping["sentence3b_jp"] = data[row+1][column+10]
+            template_mapping["sentence4a_jp"] = data[row+1][column+11]
+            template_mapping["sentence4b_jp"] = data[row+1][column+12]
 
             # Substitute
             template_filled = template_string.safe_substitute(template_mapping)
@@ -153,10 +134,10 @@ for level in levels:
             f_level = str(level)
             f_unit = str(unit).zfill(2)
             f_lesson = str(lesson).zfill(2)
-            html.write_pdf('{}AS{}U{}L{}.pdf'.format(output_path, f_level, f_unit, f_lesson))
+            html.write_pdf(f'{output_path}AS{f_level}U{f_unit}L{f_lesson}.pdf')
 
             # Advance to the next row of stories and vocab
-            row += 3
+            # row += 3
             # stop after one Lesson
             # break
         # stop after one Unit
