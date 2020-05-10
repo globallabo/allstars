@@ -19,8 +19,8 @@ for level in levels:
     # Create HTML template for image flashcards
     font_config = FontConfiguration()
     template_image_filename = "flashcards-images-template.html"
-    template_image_file = open(template_image_filename, "r")
-    template_image_file_contents = template_image_file.read()
+    with open(template_image_filename, "r") as template_image_file:
+        template_image_file_contents = template_image_file.read()
     template_image_string = Template(template_image_file_contents)
     # Create HTML template for word flashcards
     template_word_filename = "flashcards-words-template.html"
@@ -29,8 +29,8 @@ for level in levels:
     template_word_string = Template(template_word_file_contents)
     # Load CSS (not necessary)
     css_filename = "flashcards.css"
-    css_file = open(css_filename, "r")
-    css_string = css_file.read()
+    with open(css_filename, "r") as css_file:
+        css_string = css_file.read()
 
     output_path = "/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output-fc/"
 

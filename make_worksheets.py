@@ -21,12 +21,12 @@ for level in levels:
     # Create HTML template
     font_config = FontConfiguration()
     template_filename = f'AS{level}-worksheets-template.html'
-    template_file = open(template_filename, "r")
-    template_file_contents = template_file.read()
+    with open(template_filename, "r") as template_file:
+        template_file_contents = template_file.read()
     template_string = Template(template_file_contents)
     css_filename = "worksheets.css"
-    css_file = open(css_filename, "r")
-    css_string = css_file.read()
+    with open(css_filename, "r") as css_file:
+        css_string = css_file.read()
 
     output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output3/Level {level}/'
 
