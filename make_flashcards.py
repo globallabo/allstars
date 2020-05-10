@@ -60,33 +60,17 @@ for level in levels:
         # This is used for image naming:
         template_mapping["unit_zfill"] = str(unit).zfill(2)
 
-        print("Unit: " + str(unit))
+        print(f'Unit: {unit}')
 
         # set vocab vars
-        vocab1 = data[row][column]
-        template_mapping["vocab1"] = vocab1
-        # print(vocab1)
-        vocab2 = data[row][column+1]
-        template_mapping["vocab2"] = vocab2
-        # print(vocab2)
-        vocab3 = data[row][column+2]
-        template_mapping["vocab3"] = vocab3
-        # print(vocab3)
-        vocab4 = data[row][column+3]
-        template_mapping["vocab4"] = vocab4
-        # print(vocab4)
-        vocab5 = data[row+3][column]
-        template_mapping["vocab5"] = vocab5
-        # print(vocab5)
-        vocab6 = data[row+3][column+1]
-        template_mapping["vocab6"] = vocab6
-        # print(vocab6)
-        vocab7 = data[row+3][column+2]
-        template_mapping["vocab7"] = vocab7
-        # print(vocab7)
-        vocab8 = data[row+3][column+3]
-        template_mapping["vocab8"] = vocab8
-        # print(vocab8)
+        template_mapping["vocab1"] = data[row][column]
+        template_mapping["vocab2"] = data[row][column+1]
+        template_mapping["vocab3"] = data[row][column+2]
+        template_mapping["vocab4"] = data[row][column+3]
+        template_mapping["vocab5"] = data[row+3][column]
+        template_mapping["vocab6"] = data[row+3][column+1]
+        template_mapping["vocab7"] = data[row+3][column+2]
+        template_mapping["vocab8"] = data[row+3][column+3]
 
         # Substitute
         template_word_filled = template_word_string.safe_substitute(template_mapping)
@@ -100,11 +84,11 @@ for level in levels:
         f_unit = str(unit).zfill(2)
         # print(template_string)
         html_word = HTML(string=template_word_filled)
-        html_word.write_pdf('{}AS{}U{}-word_flashcards.pdf'.format(output_path, f_level, f_unit))
+        html_word.write_pdf(f'{output_path}AS{f_level}U{f_unit}-word_flashcards.pdf')
         if level == 1:
             html_image = HTML(string=template_image_filled)
             html_image.write_pdf(
-                '{}AS{}U{}-image_flashcards.pdf'.format(output_path, f_level, f_unit))
+                f'{output_path}AS{f_level}U{f_unit}-image_flashcards.pdf')
 
         # Advance to the next unit
         # row += 12
