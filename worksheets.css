@@ -278,12 +278,18 @@ section {
 
 .sentences-writing {
   text-align: center;
+  /* background-color: grey; */
+  margin-top: 1.2em;
+}
+.sentences-writing.level3 {
+  margin-top: 3em;
 }
 .sentences-writing p {
-  margin: 0.7em 0;
+  margin-top: 0.7em;
+  /* background-color: red; */
 }
 .sentences-writing.level2 p {
-  margin: 0.4em 0;
+  margin-top: 0.4em;
 }
 p.spaced {
   letter-spacing: 4pt;
@@ -318,15 +324,21 @@ p.sentence-tracing-dotted-guided.level2,
 p.sentence-writing-guided.level2 {
   font-size: 30pt;
 }
-p.sentence-example-normal.level2 {
-  font-size: 24pt;
+p.sentence-example-normal.level3 {
+  /* margin-top: 1em; */
+  font-size: 22pt;
 }
 p.sentence-writing.level3 {
-  font-size: 30pt;
-  width: 80%;
+  width: 90%;
   border-bottom: 1pt solid black;
   /* margin: 0.5em auto 1em auto; */
   margin-left: auto;
   margin-right: auto;
-  line-height: 1em;
+  margin-top: 2em;
+  height: 1em;
+  /* background-color: red; */
+}
+
+p.sentence-example-normal.level3 + p.sentence-writing.level3 {
+  margin-top: 1.5em;
 }
