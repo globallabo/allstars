@@ -127,14 +127,17 @@ footer .stamp-teacher .stamp-label-en {
   flex-direction: row;
   justify-content: flex-start;
 }
-.last-page footer .name-date .date {
-  margin-left: 2mm;
+.last-page footer .name-date .name {
+  margin-right: 6mm;
 }
 .last-page footer .stamps {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
+}
+.last-page footer .stamps .stamp-teacher {
+  margin-right: 6mm;
 }
 footer .stamp-key {
   text-align: center;
