@@ -41,7 +41,11 @@ for level in levels:
              "https://www.googleapis.com/auth/drive"]
     creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
     client = gspread.authorize(creds)
-    sheet = client.open("all_stars_revised_0128").get_worksheet(level-1)
+    # *** This is only necessary until the Level 2 old/new sheets get merged ***
+    if level == 1:
+        sheet = client.open("all_stars_revised_0128").get_worksheet(level-1)
+    else:
+        sheet = client.open("all_stars_revised_0128").get_worksheet(level)
     data = sheet.get_all_values()
 
     # Set the starting point of the gspread output
@@ -63,14 +67,30 @@ for level in levels:
         print(f'Unit: {unit}')
 
         # set vocab vars
-        template_mapping["vocab1"] = data[row][column]
-        template_mapping["vocab2"] = data[row][column+1]
-        template_mapping["vocab3"] = data[row][column+2]
-        template_mapping["vocab4"] = data[row][column+3]
-        template_mapping["vocab5"] = data[row+3][column]
-        template_mapping["vocab6"] = data[row+3][column+1]
-        template_mapping["vocab7"] = data[row+3][column+2]
-        template_mapping["vocab8"] = data[row+3][column+3]
+        template_mapping["vocab1"] = data[row][column] \
+            if '/' not in data[row][column] \
+            else f'<ul><li>{data[row][column].split(sep="/")[0]}</li><li>{data[row][column].split(sep="/")[1]}</li></ul>'
+        template_mapping["vocab2"] = data[row][column+1] \
+            if '/' not in data[row][column+1] \
+            else f'<ul><li>{data[row][column+1].split(sep="/")[0]}</li><li>{data[row][column+1].split(sep="/")[1]}</li></ul>'
+        template_mapping["vocab3"] = data[row][column+2] \
+            if '/' not in data[row][column+2] \
+            else f'<ul><li>{data[row][column+2].split(sep="/")[0]}</li><li>{data[row][column+2].split(sep="/")[1]}</li></ul>'
+        template_mapping["vocab4"] = data[row][column+3] \
+            if '/' not in data[row][column+3] \
+            else f'<ul><li>{data[row][column+3].split(sep="/")[0]}</li><li>{data[row][column+3].split(sep="/")[1]}</li></ul>'
+        template_mapping["vocab5"] = data[row+3][column] \
+            if '/' not in data[row+3][column] \
+            else f'<ul><li>{data[row+3][column].split(sep="/")[0]}</li><li>{data[row+3][column].split(sep="/")[1]}</li></ul>'
+        template_mapping["vocab6"] = data[row+3][column+1] \
+            if '/' not in data[row+3][column+1] \
+            else f'<ul><li>{data[row+3][column+1].split(sep="/")[0]}</li><li>{data[row+3][column+1].split(sep="/")[1]}</li></ul>'
+        template_mapping["vocab7"] = data[row+3][column+2] \
+            if '/' not in data[row+3][column+2] \
+            else f'<ul><li>{data[row+3][column+2].split(sep="/")[0]}</li><li>{data[row+3][column+2].split(sep="/")[1]}</li></ul>'
+        template_mapping["vocab8"] = data[row+3][column+3] \
+            if '/' not in data[row+3][column+3] \
+            else f'<ul><li>{data[row+3][column+3].split(sep="/")[0]}</li><li>{data[row+3][column+3].split(sep="/")[1]}</li></ul>'
 
         # Substitute
         template_word_filled = template_word_string.safe_substitute(template_mapping)

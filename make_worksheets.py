@@ -37,8 +37,11 @@ for level in levels:
              "https://www.googleapis.com/auth/drive"]
     creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
     client = gspread.authorize(creds)
-    # sheet = client.open("all_stars_revised_0128").sheet1
-    sheet = client.open("all_stars_revised_0128").get_worksheet(level-1)
+    # *** This is only necessary until the Level 2 old/new sheets get merged ***
+    if level == 1:
+        sheet = client.open("all_stars_revised_0128").get_worksheet(level-1)
+    else:
+        sheet = client.open("all_stars_revised_0128").get_worksheet(level)
     data = sheet.get_all_values()
 
     # Set the starting point of the gspread output
@@ -141,4 +144,4 @@ for level in levels:
             # stop after one Lesson
             # break
         # stop after one Unit
-        break
+        # break
