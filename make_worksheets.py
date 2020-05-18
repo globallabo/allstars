@@ -68,6 +68,8 @@ for level in levels:
             print(f'Unit: {unit}, Lesson: {lesson}')
             template_mapping["story_en"] = data[row][column]
             template_mapping["story_jp"] = data[row+1][column]
+            print("URL:")
+            print(data[row+2][column])
 
             if level == 1:
                 # set list vars
@@ -144,4 +146,4 @@ for level in levels:
             # stop after one Lesson
             # break
         # stop after one Unit
-        # break
+        break
