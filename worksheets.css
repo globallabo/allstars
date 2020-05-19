@@ -202,6 +202,9 @@ section {
 .story.level2 {
   border-color: #5599ff;
 }
+.story.level3 {
+  border-color: #00aa44;
+}
 .story-english, .vocab-english {
   font-family: 'ZNuscriptHeavy';
   font-size: 22pt;
