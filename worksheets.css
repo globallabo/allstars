@@ -180,6 +180,8 @@ footer img.cornerstar {
 section {
   page-break-after: always;
   page-break-inside: avoid;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .story-and-image {
@@ -243,6 +245,9 @@ section {
   flex-direction: column;
   margin: 10mm 0 0 25mm;
 }
+.sentences-presentation.level3 {
+  margin: 10mm 0 0 10mm;
+}
 .sentence-presentation {
   display: flex;
   flex-direction: row;
@@ -253,15 +258,23 @@ section {
 .sentence-presentation:last-of-type {
   border-bottom: none;
 }
-.sentence-presentation.level2 {
+.sentence-presentation.level2,
+.sentence-presentation.level3 {
   border-bottom: none;
   padding-bottom: 3mm;
 }
 .sentences {
   width: 80mm;
 }
-.sentences.level2 {
-  width: 100%;
+.sentences.level2,
+.sentences.level3 {
+  width: auto;
+}
+.sentences.level3 p.vocab-english {
+  font-size: 17.6pt;
+}
+.sentences.level3 p.vocab-japanese {
+  font-size: 8pt;
 }
 .sentences p.vocab-japanese {
   margin-bottom: 6pt;
