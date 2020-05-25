@@ -28,7 +28,7 @@ driver.find_element_by_id('gr_login_username').send_keys(username)
 driver.find_element_by_id('gr_login_password').send_keys(password)
 driver.find_element_by_id('signin_button').click()
 # Login takes a few seconds
-time.sleep(60)
+time.sleep(120)
 
 # levels = [1, 2, 3]
 # units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
@@ -68,10 +68,14 @@ for level in levels:
                 driver.get(request_url)
                 driver.find_element_by_class_name('download-button').click()
                 # Let the file download
-                time.sleep(15)
-                zip_filename = max(
-                    [output_path + f for f in os.listdir(output_path)],
-                    key=os.path.getctime)
+                still_downloading = True
+                while still_downloading:
+                    time.sleep(1)
+                    zip_filename = max(
+                        [output_path + f for f in os.listdir(output_path)],
+                        key=os.path.getctime)
+                    if zip_filename.endswith('.zip'):
+                        still_downloading = False
                 with ZipFile(zip_filename, 'r') as zip_object:
                     # Get a list of all archived file names from the zip
                     list_of_filenames = zip_object.namelist()
@@ -82,10 +86,12 @@ for level in levels:
                             # get the info on the JPG file
                             file_info = zip_object.getinfo(filename)
                             # rename the JPG
-                            file_info.filename = "test.jpg"
+                            file_info.filename = f"AS{level}U{unit:02}L{lesson:02}-story.jpg"
                             # Extract the JPG file from the zip
                             zip_object.extract(file_info, output_path)
                 # Delete the zip file when finished
                 os.remove(os.path.join(output_path, zip_filename))
+        # stop after one unit
+        # break
 # Quit the Chrome webdriver instance
 driver.quit()
