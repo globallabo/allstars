@@ -6,8 +6,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from zipfile import ZipFile
 
-output_path = "/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/images-uncropped/"
-
 # Set up Selenium Chrome Webdriver Options
 webdriver_options = Options()
 # webdriver_options.headless = True
@@ -32,7 +30,7 @@ time.sleep(120)
 
 # levels = [1, 2, 3]
 # units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-levels = [3]
+levels = [2]
 units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 lessons = [1, 2, 3, 4]
 
@@ -50,6 +48,8 @@ for level in levels:
     else:
         sheet = client.open("all_stars_revised_0128").get_worksheet(level)
     data = sheet.get_all_values()
+
+    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/images-uncropped/Level {level}'
 
     # Set the starting point of the gspread output
     row = 3
