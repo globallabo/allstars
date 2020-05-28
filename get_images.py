@@ -6,6 +6,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from zipfile import ZipFile
 
+output_path = "/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/images-uncropped/Level 2"
+
 # Set up Selenium Chrome Webdriver Options
 webdriver_options = Options()
 # webdriver_options.headless = True
@@ -13,7 +15,7 @@ webdriver_options.add_experimental_option('prefs', {
     "download.default_directory": output_path,
     "download.prompt_for_download": False,
     "download.directory_upgrade": True})
-webdriver_path = "/Users/cbunn/Documents/Employment/5 Star/All Stars Second Edition/python scripting/chromedriver"
+webdriver_path = "/usr/local/bin/chromedriver"
 driver = webdriver.Chrome(webdriver_path, options=webdriver_options)
 
 # Freepik info
@@ -35,6 +37,7 @@ units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 lessons = [1, 2, 3, 4]
 
 for level in levels:
+    print(f'Level {level}')
     # Fetch data from Google Sheet
     scope = ["https://spreadsheets.google.com/feeds",
              "https://www.googleapis.com/auth/spreadsheets",
@@ -49,8 +52,6 @@ for level in levels:
         sheet = client.open("all_stars_revised_0128").get_worksheet(level)
     data = sheet.get_all_values()
 
-    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/images-uncropped/Level {level}'
-
     # Set the starting point of the gspread output
     row = 3
     column = 3
@@ -58,12 +59,14 @@ for level in levels:
     # Loop through all Units and Lessons
     #  (range() needs a +1 because it stops at the number before)
     for unit in units:
+        print(f'Unit {unit}')
         for lesson in lessons:
+            print(f'Lesson {lesson}')
             # Set the row based on the unit and lesson
             row = 3 + ((unit - 1) * 12) + ((lesson - 1) * 3)
             request_url = data[row][column]
-            print("URL:")
-            print(request_url)
+            # print("URL:")
+            # print(request_url)
             if request_url:
                 driver.get(request_url)
                 driver.find_element_by_class_name('download-button').click()
