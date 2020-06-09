@@ -6,6 +6,19 @@ from weasyprint.fonts import FontConfiguration
 from string import Template
 import logging
 
+
+def make_blank_string(length, max_length=27):
+    # Create string of underscores whose length depends on the given length,
+    #  but is not more than the maximum
+    ratio = 0.667
+    if round(ratio * length) > max_length:
+        print(max_length)
+        return '_' * max_length
+    else:
+        print(round(ratio * length))
+        return '_' * round(ratio * length)
+
+
 # Log WeasyPrint output
 logger = logging.getLogger('weasyprint')
 logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
@@ -13,7 +26,10 @@ logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
 # So far, we're only doing Level 1, but in the future, we'll have to deal
 #  with the others
 levels = [1, 2, 3]
-units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+# levels = [2]
+# units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+# units = [1, 14]
+units = [10]
 lessons = [1, 2, 3, 4]
 
 for level in levels:
@@ -28,7 +44,8 @@ for level in levels:
     with open(css_filename, "r") as css_file:
         css_string = css_file.read()
 
-    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output3/Level {level}/'
+    # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
+    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/worksheet-test/'
 
     # Fetch data from Google Sheet
     scope = ["https://spreadsheets.google.com/feeds",
@@ -68,8 +85,8 @@ for level in levels:
             print(f'Unit: {unit}, Lesson: {lesson}')
             template_mapping["story_en"] = data[row][column]
             template_mapping["story_jp"] = data[row+1][column]
-            print("URL:")
-            print(data[row+2][column])
+            # print("URL:")
+            # print(data[row+2][column])
 
             if level == 1:
                 # set list vars
@@ -105,20 +122,64 @@ for level in levels:
                         # Map the vocab image numbers for pages 1 and 2
                         template_mapping["vocab_img" + str(k)] = vocab_nums[k-1]
                 # writing sentences
-                template_mapping["wsentence1_en"] = data[row][column+13]
-                template_mapping["wsentence2_en"] = data[row][column+14]
-                template_mapping["wsentence1_jp"] = data[row+1][column+13]
-                template_mapping["wsentence2_jp"] = data[row+1][column+14]
+                template_mapping["wsentence1_en"] = data[row][column+13].strip()
+                template_mapping["blank1_en"] = make_blank_string(
+                    len(template_mapping["wsentence1_en"]))
+                template_mapping["wsentence2_en"] = data[row][column+14].strip()
+                template_mapping["blank2_en"] = make_blank_string(
+                    len(template_mapping["wsentence2_en"]))
+                template_mapping["wsentence1_jp"] = data[row+1][column+13].strip()
+                template_mapping["wsentence2_jp"] = data[row+1][column+14].strip()
 
             # reading sentences
-            template_mapping["sentence1a_en"] = data[row][column+5]
-            template_mapping["sentence1b_en"] = data[row][column+6]
-            template_mapping["sentence2a_en"] = data[row][column+7]
-            template_mapping["sentence2b_en"] = data[row][column+8]
-            template_mapping["sentence3a_en"] = data[row][column+9]
-            template_mapping["sentence3b_en"] = data[row][column+10]
-            template_mapping["sentence4a_en"] = data[row][column+11]
-            template_mapping["sentence4b_en"] = data[row][column+12]
+            template_mapping["sentence1a_en"] = data[row][column+5].strip()
+            print(template_mapping["sentence1a_en"])
+            print(len(template_mapping["sentence1a_en"]))
+            template_mapping["blank1a_en"] = make_blank_string(
+                len(template_mapping["sentence1a_en"]))
+
+            template_mapping["sentence1b_en"] = data[row][column+6].strip()
+            print(template_mapping["sentence1b_en"])
+            print(len(template_mapping["sentence1b_en"]))
+            template_mapping["blank1b_en"] = make_blank_string(
+                len(template_mapping["sentence1b_en"]))
+
+            template_mapping["sentence2a_en"] = data[row][column+7].strip()
+            print(template_mapping["sentence2a_en"])
+            print(len(template_mapping["sentence2a_en"]))
+            template_mapping["blank2a_en"] = make_blank_string(
+                len(template_mapping["sentence2a_en"]))
+
+            template_mapping["sentence2b_en"] = data[row][column+8].strip()
+            print(template_mapping["sentence2b_en"])
+            print(len(template_mapping["sentence2b_en"]))
+            template_mapping["blank2b_en"] = make_blank_string(
+                len(template_mapping["sentence2b_en"]))
+
+            template_mapping["sentence3a_en"] = data[row][column+9].strip()
+            print(template_mapping["sentence3a_en"])
+            print(len(template_mapping["sentence3a_en"]))
+            template_mapping["blank3a_en"] = make_blank_string(
+                len(template_mapping["sentence3a_en"]))
+
+            template_mapping["sentence3b_en"] = data[row][column+10].strip()
+            print(template_mapping["sentence3b_en"])
+            print(len(template_mapping["sentence3b_en"]))
+            template_mapping["blank3b_en"] = make_blank_string(
+                len(template_mapping["sentence3b_en"]))
+
+            template_mapping["sentence4a_en"] = data[row][column+11].strip()
+            print(template_mapping["sentence4a_en"])
+            print(len(template_mapping["sentence4a_en"]))
+            template_mapping["blank4a_en"] = make_blank_string(
+                len(template_mapping["sentence4a_en"]))
+
+            template_mapping["sentence4b_en"] = data[row][column+12].strip()
+            print(template_mapping["sentence4b_en"])
+            print(len(template_mapping["sentence4b_en"]))
+            template_mapping["blank4b_en"] = make_blank_string(
+                len(template_mapping["sentence4b_en"]))
+
             template_mapping["sentence1a_jp"] = data[row+1][column+5]
             template_mapping["sentence1b_jp"] = data[row+1][column+6]
             template_mapping["sentence2a_jp"] = data[row+1][column+7]
@@ -139,6 +200,8 @@ for level in levels:
             f_level = str(level)
             f_unit = str(unit).zfill(2)
             f_lesson = str(lesson).zfill(2)
+            # with open(f'{output_path}AS{f_level}U{f_unit}L{f_lesson}.html', 'w') as htmlfile:
+            #     htmlfile.write(template_filled)
             html.write_pdf(f'{output_path}AS{f_level}U{f_unit}L{f_lesson}.pdf')
 
             # Advance to the next row of stories and vocab
@@ -146,4 +209,4 @@ for level in levels:
             # stop after one Lesson
             # break
         # stop after one Unit
-        break
+        # break
