@@ -63,6 +63,8 @@ for level in levels:
         for lesson in lessons:
             print(f'Lesson {lesson}')
             # Set the row based on the unit and lesson
+            # - Image links start on the 3rd row and then every 3rd row from there,
+            # - moving ahead 12 rows for each unit
             row = 3 + ((unit - 1) * 12) + ((lesson - 1) * 3)
             request_url = data[row][column]
             # print("URL:")
@@ -73,7 +75,7 @@ for level in levels:
                 # Let the file download
                 still_downloading = True
                 while still_downloading:
-                    time.sleep(1)
+                    time.sleep(10)
                     zip_filename = max(
                         [output_path + f for f in os.listdir(output_path)],
                         key=os.path.getctime)
