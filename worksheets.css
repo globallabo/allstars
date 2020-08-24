@@ -311,26 +311,28 @@ section {
   margin-top: 0.4em;
 }
 p.spaced {
-  letter-spacing: 4pt;
+  letter-spacing: 3pt;
 }
 p.sentence-example-normal {
   font-family: 'ZNuscript';
-  font-size: 48pt;
 }
 p.sentence-example-arrows-guided {
   font-family: 'ZNuscriptArrowsGuidedNL';
-  font-size: 48pt;
 }
 p.sentence-tracing-dotted-arrows-guided {
   font-family: 'ZNuscriptDottedArrowsGuidedNL';
-  font-size: 48pt;
 }
 p.sentence-tracing-dotted-guided {
   font-family: 'ZNuscriptDottedGuidedNL';
-  font-size: 48pt;
 }
 p.sentence-writing-guided {
   font-family: 'ZNuscriptDottedGuidedNL';
+}
+p.sentence-example-normal,
+p.sentence-example-arrows-guided,
+p.sentence-tracing-dotted-arrows-guided,
+p.sentence-tracing-dotted-guided,
+p.sentence-writing-guided {
   font-size: 48pt;
 }
 p.spaced.level2 {
