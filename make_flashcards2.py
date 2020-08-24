@@ -26,7 +26,7 @@ css_filename = "flashcards.css"
 css_file = open(css_filename, "r")
 css_string = css_file.read()
 
-output_path = "/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output2/"
+output_path = "/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output-fc2/"
 
 # Fetch data from Google Sheet
 scope = ["https://spreadsheets.google.com/feeds",
@@ -40,7 +40,7 @@ data = sheet.get_all_values()
 
 # So far, we're only doing Level 1, but in the future, we'll have to deal
 #  with the others
-level = 2
+level = 3
 numUnits = 16
 
 # Set the starting point of the gspread output
