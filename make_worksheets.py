@@ -10,7 +10,8 @@ import logging
 def make_blank_string(length, max_length=27):
     # Create string of underscores whose length depends on the given length,
     #  but is not more than the maximum
-    ratio = 0.667
+    ratio = 0.6  # Level 1, max=16
+    # ratio = 0.667 # Level 2, max=27
     if round(ratio * length) > max_length:
         print(max_length)
         return '_' * max_length
@@ -25,11 +26,11 @@ logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
 
 # So far, we're only doing Level 1, but in the future, we'll have to deal
 #  with the others
-levels = [1, 2, 3]
-# levels = [2]
-# units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-# units = [1, 14]
-units = [10]
+# levels = [1, 2, 3]
+levels = [3]
+units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+# units = [11, 12, 13, 14, 15, 16]
+# units = [4, 6, 10, 14]
 lessons = [1, 2, 3, 4]
 
 for level in levels:
@@ -44,8 +45,8 @@ for level in levels:
     with open(css_filename, "r") as css_file:
         css_string = css_file.read()
 
-    # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
-    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/worksheet-test/'
+    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
+    # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
 
     # Fetch data from Google Sheet
     scope = ["https://spreadsheets.google.com/feeds",
@@ -56,9 +57,13 @@ for level in levels:
     client = gspread.authorize(creds)
     # *** This is only necessary until the Level 2 old/new sheets get merged ***
     if level == 1:
-        sheet = client.open("all_stars_revised_0128").get_worksheet(level-1)
-    else:
+        sheet = client.open("all_stars_revised_0128").get_worksheet(level - 1)
+    elif level == 2:
         sheet = client.open("all_stars_revised_0128").get_worksheet(level)
+    elif level == 3:
+        sheet = client.open("all_stars_revised_0128").get_worksheet(level + 1)
+    elif level == 4:
+        sheet = client.open("all_stars_revised_0128").get_worksheet(level + 1)
     data = sheet.get_all_values()
 
     # Set the starting point of the gspread output
