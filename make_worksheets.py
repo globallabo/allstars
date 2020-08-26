@@ -28,8 +28,8 @@ logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
 #  with the others
 # levels = [1, 2, 3]
 levels = [3]
-units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-# units = [11, 12, 13, 14, 15, 16]
+# units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+units = [1, 2, 8]
 # units = [4, 6, 10, 14]
 lessons = [1, 2, 3, 4]
 
@@ -45,8 +45,8 @@ for level in levels:
     with open(css_filename, "r") as css_file:
         css_string = css_file.read()
 
-    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
-    # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
+    # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
+    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
 
     # Fetch data from Google Sheet
     scope = ["https://spreadsheets.google.com/feeds",
@@ -93,6 +93,7 @@ for level in levels:
             # print("URL:")
             # print(data[row+2][column])
 
+            # Level 1 is separate because of the vocab section including images
             if level == 1:
                 # set list vars
                 vocab_en = []

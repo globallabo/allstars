@@ -301,7 +301,7 @@ section {
   margin-top: 1.2em;
 }
 .sentences-writing.level3 {
-  margin-top: 3em;
+  margin-top: 2em;
 }
 .sentences-writing p {
   margin-top: 0.7em;
@@ -350,16 +350,19 @@ p.sentence-example-normal.level3 {
   font-size: 20pt;
 }
 p.sentence-writing.level3 {
-  width: 90%;
-  border-bottom: 1pt solid black;
+  /* width: 90%; */
+  /* border-bottom: 1pt solid black; */
   /* margin: 0.5em auto 1em auto; */
-  margin-left: auto;
+  /* margin-left: auto;
   margin-right: auto;
   margin-top: 2em;
-  height: 1em;
+  height: 1em; */
   /* background-color: red; */
+  font-family: 'ZNuscript';
+  font-size: 24pt;
+  letter-spacing: -5pt;
 }
 
 p.sentence-example-normal.level3 + p.sentence-writing.level3 {
-  margin-top: 1.5em;
+  /* margin-top: 1.5em; */
 }
