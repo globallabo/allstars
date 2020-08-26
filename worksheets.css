@@ -301,7 +301,7 @@ section {
   margin-top: 1.2em;
 }
 .sentences-writing.level3 {
-  margin-top: 2em;
+  /* margin-top: 2em; */
 }
 .sentences-writing p {
   margin-top: 0.7em;
@@ -358,9 +358,10 @@ p.sentence-writing.level3 {
   margin-top: 2em;
   height: 1em; */
   /* background-color: red; */
+  margin-top: 0.4em;
   font-family: 'ZNuscript';
-  font-size: 24pt;
-  letter-spacing: -5pt;
+  font-size: 28pt;
+  letter-spacing: -6pt;
 }
 
 p.sentence-example-normal.level3 + p.sentence-writing.level3 {
