@@ -56,14 +56,7 @@ for level in levels:
     creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
     client = gspread.authorize(creds)
     # *** This is only necessary until the Level 2 old/new sheets get merged ***
-    if level == 1:
-        sheet = client.open("all_stars_revised_0128").get_worksheet(level - 1)
-    elif level == 2:
-        sheet = client.open("all_stars_revised_0128").get_worksheet(level)
-    elif level == 3:
-        sheet = client.open("all_stars_revised_0128").get_worksheet(level + 1)
-    elif level == 4:
-        sheet = client.open("all_stars_revised_0128").get_worksheet(level + 1)
+    sheet = client.open("all_stars_revised_0128").get_worksheet("Level {level}")
     data = sheet.get_all_values()
 
     # Set the starting point of the gspread output
