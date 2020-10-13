@@ -27,9 +27,9 @@ logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
 # So far, we're only doing Level 1, but in the future, we'll have to deal
 #  with the others
 # levels = [1, 2, 3]
-levels = [3]
-# units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-units = [1, 2, 8]
+levels = [4]
+units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+# units = [1, 2, 8]
 # units = [4, 6, 10, 14]
 lessons = [1, 2, 3, 4]
 
@@ -55,8 +55,7 @@ for level in levels:
              "https://www.googleapis.com/auth/drive"]
     creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
     client = gspread.authorize(creds)
-    # *** This is only necessary until the Level 2 old/new sheets get merged ***
-    sheet = client.open("all_stars_revised_0128").get_worksheet("Level {level}")
+    sheet = client.open("all_stars_revised_0128").worksheet(f"Level {level}")
     data = sheet.get_all_values()
 
     # Set the starting point of the gspread output

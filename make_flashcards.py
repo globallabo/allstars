@@ -12,7 +12,7 @@ logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
 
 # levels = [1, 2, 3]
 # units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-levels = [3]
+levels = [4]
 # units = [15]
 units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
@@ -33,7 +33,8 @@ for level in levels:
     with open(css_filename, "r") as css_file:
         css_string = css_file.read()
 
-    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Flashcards/Level {level}/'
+    # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Flashcards/Level {level}/'
+    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output-fc/Level {level}/'
 
     # Fetch data from Google Sheet
     scope = ["https://spreadsheets.google.com/feeds",
@@ -42,15 +43,7 @@ for level in levels:
              "https://www.googleapis.com/auth/drive"]
     creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
     client = gspread.authorize(creds)
-    # *** This is only necessary until the Level 2 old/new sheets get merged ***
-    if level == 1:
-        sheet = client.open("all_stars_revised_0128").get_worksheet(level - 1)
-    elif level == 2:
-        sheet = client.open("all_stars_revised_0128").get_worksheet(level)
-    elif level == 3:
-        sheet = client.open("all_stars_revised_0128").get_worksheet(level + 1)
-    elif level == 4:
-        sheet = client.open("all_stars_revised_0128").get_worksheet(level + 1)
+    sheet = client.open("all_stars_revised_0128").worksheet(f"Level {level}")
     data = sheet.get_all_values()
 
     # Set the starting point of the gspread output
