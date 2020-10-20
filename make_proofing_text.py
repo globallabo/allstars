@@ -5,7 +5,8 @@ from string import Template
 
 # So far, we're only doing Level 1, but in the future, we'll have to deal
 #  with the others
-levels = [1, 2, 3, 4]
+# levels = [1, 2, 3, 4]
+levels = [5]
 units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 lessons = [1, 2, 3, 4]
 
@@ -59,33 +60,41 @@ for level in levels:
             page_template_mapping["unit_zfill"] = str(unit).zfill(2)
             page_template_mapping["lesson_zfill"] = str(lesson).zfill(2)
 
-            page_template_mapping["story_en"] = data[row][column]
-            page_template_mapping["story_jp"] = data[row + 1][column]
-            # set list vars
-            vocab_en = []
-            vocab_jp = []
-            for k in range(1, 5):
-                vocab_en.append(data[row][column + k])
-                vocab_jp.append(data[row + 1][column + k])
-                # -1 because the range is 1-5, while the list is 0-4
-                page_template_mapping["vocab" + str(k) + "_en"] = vocab_en[k - 1]
-                page_template_mapping["vocab" + str(k) + "_jp"] = vocab_jp[k - 1]
-            page_template_mapping["sentence1a_en"] = data[row][column + 5]
-            page_template_mapping["sentence1b_en"] = data[row][column + 6]
-            page_template_mapping["sentence2a_en"] = data[row][column + 7]
-            page_template_mapping["sentence2b_en"] = data[row][column + 8]
-            page_template_mapping["sentence3a_en"] = data[row][column + 9]
-            page_template_mapping["sentence3b_en"] = data[row][column + 10]
-            page_template_mapping["sentence4a_en"] = data[row][column + 11]
-            page_template_mapping["sentence4b_en"] = data[row][column + 12]
-            page_template_mapping["sentence1a_jp"] = data[row + 1][column + 5]
-            page_template_mapping["sentence1b_jp"] = data[row + 1][column + 6]
-            page_template_mapping["sentence2a_jp"] = data[row + 1][column + 7]
-            page_template_mapping["sentence2b_jp"] = data[row + 1][column + 8]
-            page_template_mapping["sentence3a_jp"] = data[row + 1][column + 9]
-            page_template_mapping["sentence3b_jp"] = data[row + 1][column + 10]
-            page_template_mapping["sentence4a_jp"] = data[row + 1][column + 11]
-            page_template_mapping["sentence4b_jp"] = data[row + 1][column + 12]
+            if level == 5:
+                page_template_mapping["story_en"] = data[row][column + 1]
+                page_template_mapping["story_jp"] = data[row + 1][column + 1]
+                page_template_mapping["sentence1a_en"] = data[row][column + 2]
+                page_template_mapping["sentence1b_en"] = data[row][column + 3]
+                page_template_mapping["sentence1a_jp"] = data[row + 1][column + 2]
+                page_template_mapping["sentence1b_jp"] = data[row + 1][column + 3]
+            else:
+                page_template_mapping["story_en"] = data[row][column]
+                page_template_mapping["story_jp"] = data[row + 1][column]
+                # set list vars
+                vocab_en = []
+                vocab_jp = []
+                for k in range(1, 5):
+                    vocab_en.append(data[row][column + k])
+                    vocab_jp.append(data[row + 1][column + k])
+                    # -1 because the range is 1-5, while the list is 0-4
+                    page_template_mapping["vocab" + str(k) + "_en"] = vocab_en[k - 1]
+                    page_template_mapping["vocab" + str(k) + "_jp"] = vocab_jp[k - 1]
+                page_template_mapping["sentence1a_en"] = data[row][column + 5]
+                page_template_mapping["sentence1b_en"] = data[row][column + 6]
+                page_template_mapping["sentence2a_en"] = data[row][column + 7]
+                page_template_mapping["sentence2b_en"] = data[row][column + 8]
+                page_template_mapping["sentence3a_en"] = data[row][column + 9]
+                page_template_mapping["sentence3b_en"] = data[row][column + 10]
+                page_template_mapping["sentence4a_en"] = data[row][column + 11]
+                page_template_mapping["sentence4b_en"] = data[row][column + 12]
+                page_template_mapping["sentence1a_jp"] = data[row + 1][column + 5]
+                page_template_mapping["sentence1b_jp"] = data[row + 1][column + 6]
+                page_template_mapping["sentence2a_jp"] = data[row + 1][column + 7]
+                page_template_mapping["sentence2b_jp"] = data[row + 1][column + 8]
+                page_template_mapping["sentence3a_jp"] = data[row + 1][column + 9]
+                page_template_mapping["sentence3b_jp"] = data[row + 1][column + 10]
+                page_template_mapping["sentence4a_jp"] = data[row + 1][column + 11]
+                page_template_mapping["sentence4b_jp"] = data[row + 1][column + 12]
 
             page_template_mapping["page_number"] = page_number
             page_template_mapping["page_count"] = page_count
