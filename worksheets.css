@@ -377,6 +377,9 @@ p.sentence-writing.level5 {
   font-size: 30pt;
   letter-spacing: -6pt;
 }
+.blank {
+  letter-spacing: -6pt;
+}
 
 p.sentence-example-normal.level3 + p.sentence-writing.level3 {
   /* margin-top: 1.5em; */

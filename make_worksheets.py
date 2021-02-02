@@ -20,6 +20,14 @@ def make_blank_string(length, max_length=27):
         return '_' * round(ratio * length)
 
 
+def replace_blank(string):
+    find_blank = '__'
+    new_blank = '<span class="blank">__________</span>'
+    if find_blank in string:
+        string = string.replace(find_blank, new_blank)
+    return string
+
+
 # Log WeasyPrint output
 logger = logging.getLogger('weasyprint')
 logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
@@ -194,6 +202,22 @@ for level in levels:
                 template_mapping["story_jp"] = data[row + 1][column + 1]
                 print(f'Story (EN): {template_mapping["story_en"]}')
                 print(f'Story (JP): {template_mapping["story_jp"]}')
+
+                # reading/writing sentences
+                template_mapping["sentence1a_en"] = replace_blank(data[row][column + 2].strip())
+                print(template_mapping["sentence1a_en"])
+                print(len(template_mapping["sentence1a_en"]))
+                template_mapping["blank1a_en"] = make_blank_string(
+                    len(template_mapping["sentence1a_en"]))
+
+                template_mapping["sentence1b_en"] = replace_blank(data[row][column + 3].strip())
+                print(template_mapping["sentence1b_en"])
+                print(len(template_mapping["sentence1b_en"]))
+                template_mapping["blank1b_en"] = make_blank_string(
+                    len(template_mapping["sentence1b_en"]))
+
+                template_mapping["sentence1a_jp"] = data[row + 1][column + 2]
+                template_mapping["sentence1b_jp"] = data[row + 1][column + 3]
 
             # Substitute
             template_filled = template_string.safe_substitute(template_mapping)
