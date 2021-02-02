@@ -210,6 +210,9 @@ section {
 .story.level4 {
   border-color: #cc00ff;
 }
+.story.level5 {
+  border-color: #ec008c;
+}
 .story-english, .vocab-english {
   font-family: 'ZNuscriptHeavy';
   font-size: 22pt;
@@ -263,7 +266,8 @@ section {
 }
 .sentence-presentation.level2,
 .sentence-presentation.level3,
-.sentence-presentation.level4 {
+.sentence-presentation.level4,
+.sentence-presentation.level5 {
   border-bottom: none;
   padding-bottom: 3mm;
 }
@@ -272,7 +276,8 @@ section {
 }
 .sentences.level2,
 .sentences.level3,
-.sentences.level4 {
+.sentences.level4,
+.sentences.level5 {
   width: auto;
 }
 .sentences.level3 p.vocab-english {
@@ -351,12 +356,14 @@ p.sentence-writing-guided.level2 {
   font-size: 26pt;
 }
 p.sentence-example-normal.level3,
-p.sentence-example-normal.level4 {
+p.sentence-example-normal.level4,
+p.sentence-example-normal.level5 {
   /* margin-top: 1em; */
   font-size: 24pt;
 }
 p.sentence-writing.level3,
-p.sentence-writing.level4 {
+p.sentence-writing.level4,
+p.sentence-writing.level5 {
   /* width: 90%; */
   /* border-bottom: 1pt solid black; */
   /* margin: 0.5em auto 1em auto; */
