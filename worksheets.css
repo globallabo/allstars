@@ -225,6 +225,9 @@ section {
   margin: 0;
   line-height: normal;
 }
+.story.level5 .story-english {
+  font-size: 20pt;
+}
 .story-img, .vocab-img {
   width: 65mm;
   height: 49mm;
@@ -320,6 +323,15 @@ section {
 .sentences-writing.level2 p {
   margin-top: 0.4em;
 }
+.sentences-writing.level5 {
+  margin-top: 2em;
+}
+.sentences-writing.level5.blank-lines {
+  margin-top: 4em;
+}
+.sentences-writing.level5.blank-lines:first-of-type {
+  margin-top: 3em;
+}
 p.spaced {
   letter-spacing: 3pt;
 }
@@ -379,6 +391,7 @@ p.sentence-writing.level5 {
 }
 .blank {
   letter-spacing: -6pt;
+  margin-right: 4pt;
 }
 
 p.sentence-example-normal.level3 + p.sentence-writing.level3 {
