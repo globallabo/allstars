@@ -197,27 +197,28 @@ for level in levels:
                 template_mapping["sentence4b_jp"] = data[row + 1][column + 12]
 
             else:
-                # Level 5 has an extra column (situation) before the stories
-                template_mapping["story_en"] = data[row][column + 1]
-                template_mapping["story_jp"] = data[row + 1][column + 1]
+                # ***NO LONGER TRUE -> Level 5 has an extra column (situation) before the stories
+                # Consider refactoring back into the main code
+                template_mapping["story_en"] = data[row][column]
+                template_mapping["story_jp"] = data[row + 1][column]
                 print(f'Story (EN): {template_mapping["story_en"]}')
                 print(f'Story (JP): {template_mapping["story_jp"]}')
 
                 # reading/writing sentences
-                template_mapping["sentence1a_en"] = replace_blank(data[row][column + 2].strip())
+                template_mapping["sentence1a_en"] = replace_blank(data[row][column + 1].strip())
                 print(template_mapping["sentence1a_en"])
                 print(len(template_mapping["sentence1a_en"]))
                 template_mapping["blank1a_en"] = make_blank_string(
                     len(template_mapping["sentence1a_en"]))
 
-                template_mapping["sentence1b_en"] = replace_blank(data[row][column + 3].strip())
+                template_mapping["sentence1b_en"] = replace_blank(data[row][column + 2].strip())
                 print(template_mapping["sentence1b_en"])
                 print(len(template_mapping["sentence1b_en"]))
                 template_mapping["blank1b_en"] = make_blank_string(
                     len(template_mapping["sentence1b_en"]))
 
-                template_mapping["sentence1a_jp"] = data[row + 1][column + 2]
-                template_mapping["sentence1b_jp"] = data[row + 1][column + 3]
+                template_mapping["sentence1a_jp"] = data[row + 1][column + 1]
+                template_mapping["sentence1b_jp"] = data[row + 1][column + 2]
 
             # Substitute
             template_filled = template_string.safe_substitute(template_mapping)
