@@ -10,11 +10,11 @@ import logging
 logger = logging.getLogger('weasyprint')
 logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
 
-# levels = [1, 2, 3]
+levels = [1, 2, 3, 4]
 # units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-levels = [4]
-# units = [15]
-units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+# levels = [4]
+units = [1]
+# units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
 for level in levels:
     # Create HTML template for image flashcards
@@ -34,7 +34,8 @@ for level in levels:
         css_string = css_file.read()
 
     # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Flashcards/Level {level}/'
-    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output-fc/Level {level}/'
+    # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output-fc/Level {level}/'
+    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/unit1-output/flashcards/'
 
     # Fetch data from Google Sheet
     scope = ["https://spreadsheets.google.com/feeds",

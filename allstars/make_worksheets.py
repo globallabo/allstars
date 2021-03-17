@@ -35,6 +35,7 @@ logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
 # So far, we're only doing Level 1, but in the future, we'll have to deal
 #  with the others
 # levels = [1, 2, 3]
+# levels = [1, 2, 3, 4, 5]
 levels = [5]
 # units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 units = [1]
@@ -55,7 +56,7 @@ for level in levels:
         css_string = css_file.read()
 
     # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
-    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
+    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/unit1-output/Level {level}/'
 
     # Fetch data from Google Sheet
     scope = ["https://spreadsheets.google.com/feeds",
