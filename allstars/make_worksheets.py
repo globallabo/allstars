@@ -28,6 +28,19 @@ def replace_blank(string):
     return string
 
 
+# Get data from google Sheet (one level at a time)
+def get_data_for_level(level: str) -> list[str]:
+    # Fetch data from Google Sheet
+    scope = ["https://spreadsheets.google.com/feeds",
+             "https://www.googleapis.com/auth/spreadsheets",
+             "https://www.googleapis.com/auth/drive.file",
+             "https://www.googleapis.com/auth/drive"]
+    creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
+    client = gspread.authorize(creds)
+    sheet = client.open("all_stars_revised_0128").worksheet(f"Level {level}")
+    return sheet.get_all_values()
+
+
 # Log WeasyPrint output
 logger = logging.getLogger('weasyprint')
 logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
@@ -56,17 +69,10 @@ for level in levels:
         css_string = css_file.read()
 
     # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
-    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/unit1-output/Level {level}/'
+    # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/unit1-output/Level {level}/'
+    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
 
-    # Fetch data from Google Sheet
-    scope = ["https://spreadsheets.google.com/feeds",
-             "https://www.googleapis.com/auth/spreadsheets",
-             "https://www.googleapis.com/auth/drive.file",
-             "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
-    client = gspread.authorize(creds)
-    sheet = client.open("all_stars_revised_0128").worksheet(f"Level {level}")
-    data = sheet.get_all_values()
+    data = get_data_for_level(level)
 
     # Set the starting point of the gspread output
     row = 1
