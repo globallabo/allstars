@@ -12,10 +12,8 @@ def make_blank_string(length, max_length=27):
     ratio = 0.6  # Level 1, max=16
     # ratio = 0.667 # Level 2, max=27
     if round(ratio * length) > max_length:
-        print(max_length)
         return '_' * max_length
     else:
-        print(round(ratio * length))
         return '_' * round(ratio * length)
 
 
@@ -44,6 +42,7 @@ def get_data_for_level(level: str) -> list[str]:
 def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> dict[str, str]:
     # Set the row based on the unit and lesson
     row = 1 + ((unit - 1) * 12) + ((lesson - 1) * 3)
+    column = 3;
 
     # Create substitution mapping
     template_mapping = dict()
@@ -54,8 +53,6 @@ def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> d
     # These are used for image naming
     template_mapping["unit_zfill"] = str(unit).zfill(2)
     template_mapping["lesson_zfill"] = str(lesson).zfill(2)
-
-    print(f'Unit: {unit}, Lesson: {lesson}')
 
     if level != 5:
         template_mapping["story_en"] = data[row][column]
@@ -107,50 +104,34 @@ def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> d
 
         # reading sentences
         template_mapping["sentence1a_en"] = data[row][column + 5].strip()
-        print(template_mapping["sentence1a_en"])
-        print(len(template_mapping["sentence1a_en"]))
         template_mapping["blank1a_en"] = make_blank_string(
             len(template_mapping["sentence1a_en"]))
 
         template_mapping["sentence1b_en"] = data[row][column + 6].strip()
-        print(template_mapping["sentence1b_en"])
-        print(len(template_mapping["sentence1b_en"]))
         template_mapping["blank1b_en"] = make_blank_string(
             len(template_mapping["sentence1b_en"]))
 
         template_mapping["sentence2a_en"] = data[row][column + 7].strip()
-        print(template_mapping["sentence2a_en"])
-        print(len(template_mapping["sentence2a_en"]))
         template_mapping["blank2a_en"] = make_blank_string(
             len(template_mapping["sentence2a_en"]))
 
         template_mapping["sentence2b_en"] = data[row][column + 8].strip()
-        print(template_mapping["sentence2b_en"])
-        print(len(template_mapping["sentence2b_en"]))
         template_mapping["blank2b_en"] = make_blank_string(
             len(template_mapping["sentence2b_en"]))
 
         template_mapping["sentence3a_en"] = data[row][column + 9].strip()
-        print(template_mapping["sentence3a_en"])
-        print(len(template_mapping["sentence3a_en"]))
         template_mapping["blank3a_en"] = make_blank_string(
             len(template_mapping["sentence3a_en"]))
 
         template_mapping["sentence3b_en"] = data[row][column + 10].strip()
-        print(template_mapping["sentence3b_en"])
-        print(len(template_mapping["sentence3b_en"]))
         template_mapping["blank3b_en"] = make_blank_string(
             len(template_mapping["sentence3b_en"]))
 
         template_mapping["sentence4a_en"] = data[row][column + 11].strip()
-        print(template_mapping["sentence4a_en"])
-        print(len(template_mapping["sentence4a_en"]))
         template_mapping["blank4a_en"] = make_blank_string(
             len(template_mapping["sentence4a_en"]))
 
         template_mapping["sentence4b_en"] = data[row][column + 12].strip()
-        print(template_mapping["sentence4b_en"])
-        print(len(template_mapping["sentence4b_en"]))
         template_mapping["blank4b_en"] = make_blank_string(
             len(template_mapping["sentence4b_en"]))
 
@@ -168,19 +149,13 @@ def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> d
         # Consider refactoring back into the main code
         template_mapping["story_en"] = data[row][column]
         template_mapping["story_jp"] = data[row + 1][column]
-        print(f'Story (EN): {template_mapping["story_en"]}')
-        print(f'Story (JP): {template_mapping["story_jp"]}')
 
         # reading/writing sentences
         template_mapping["sentence1a_en"] = replace_blank(data[row][column + 1].strip())
-        print(template_mapping["sentence1a_en"])
-        print(len(template_mapping["sentence1a_en"]))
         template_mapping["blank1a_en"] = make_blank_string(
             len(template_mapping["sentence1a_en"]))
 
         template_mapping["sentence1b_en"] = replace_blank(data[row][column + 2].strip())
-        print(template_mapping["sentence1b_en"])
-        print(len(template_mapping["sentence1b_en"]))
         template_mapping["blank1b_en"] = make_blank_string(
             len(template_mapping["sentence1b_en"]))
 
@@ -213,56 +188,44 @@ def output_pdf(contents: str, filename: str):
     html.write_pdf(filename)
 
 
-# So far, we're only doing Level 1, but in the future, we'll have to deal
-#  with the others
-# levels = [1, 2, 3]
-# levels = [1, 2, 3, 4, 5]
-levels = [5]
-# units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-units = [1]
-# units = [4, 6, 10, 14]
-lessons = [1, 2, 3, 4]
-# lessons = [2]
+def main(levels: list, units: list, lessons: list):
+    for level in levels:
+        print(f'Level {level}')
+        # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
+        # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/unit1-output/Level {level}/'
+        output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
+        data = get_data_for_level(level)
+        # Loop through all Units and Lessons
+        #  (range() needs a +1 because it stops at the number before)
+        for unit in units:
+            for lesson in lessons:
+                print(f'Unit: {unit}, Lesson: {lesson}')
+                # Create HTML template
+                template_filename = f'AS{level}-worksheets-template.html'
+                # Get contents of HTML template file
+                template_file_contents = get_template(filename=template_filename)
+                # create mapping dict
+                template_mapping = create_template_mapping(data=data, level=level, unit=unit, lesson=lesson)
+                # Substitute
+                template_filled = fill_template(template=template_file_contents, template_mapping=template_mapping)
+                # The numbers used in the filename need to be zero filled
+                f_level = str(level)
+                f_unit = str(unit).zfill(2)
+                f_lesson = str(lesson).zfill(2)
+                output_filename = f'{output_path}AS{f_level}U{f_unit}L{f_lesson}.pdf'
+                # Output PDF
+                output_pdf(contents=template_filled, filename=output_filename)
 
-for level in levels:
-    print(f'Level {level}')
-    # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
-    # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/unit1-output/Level {level}/'
-    output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
 
-    data = get_data_for_level(level)
-
-    # Set the starting point of the gspread output
-    row = 1
-    column = 3
-
-    # Loop through all Units and Lessons
-    #  (range() needs a +1 because it stops at the number before)
-    for unit in units:
-        for lesson in lessons:
-            # Create HTML template
-            template_filename = f'AS{level}-worksheets-template.html'
-            # Get contents of HTML template file
-            template_file_contents = get_template(filename=template_filename)
-            # create mapping dict
-            template_mapping = create_template_mapping(data=data, level=level, unit=unit, lesson=lesson)
-            # Substitute
-            template_filled = fill_template(template=template_file_contents, template_mapping=template_mapping)
-            html = HTML(string=template_filled)
-
-            # The numbers used in the filename need to be zero filled
-            f_level = str(level)
-            f_unit = str(unit).zfill(2)
-            f_lesson = str(lesson).zfill(2)
-            # with open(f'{output_path}AS{f_level}U{f_unit}L{f_lesson}.html', 'w') as htmlfile:
-            #     htmlfile.write(template_filled)
-            output_filename = f'{output_path}AS{f_level}U{f_unit}L{f_lesson}.pdf'
-            # Output PDF
-            output_pdf(contents=template_filled, filename=output_filename)
-
-            # Advance to the next row of stories and vocab
-            # row += 3
-            # stop after one Lesson
-            # break
-        # stop after one Unit
-        # break
+if __name__ == "__main__":
+    # So far, we're only doing Level 1, but in the future, we'll have to deal
+    #  with the others
+    # levels = [1, 2, 3]
+    # levels = [1, 2, 3, 4, 5]
+    levels = [5]
+    # units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    units = [1]
+    # units = [4, 6, 10, 14]
+    lessons = [1, 2, 3, 4]
+    # lessons = [2]
+    main(levels, units, lessons)
