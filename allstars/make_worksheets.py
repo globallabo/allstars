@@ -196,6 +196,12 @@ def get_template(filename: str) -> str:
     return template_file_contents
 
 
+# Substitute vars in template string
+def fill_template(template: str, template_mapping: dict[str, str]) -> str:
+    template_string = Template(template)
+    return template_string.safe_substitute(template_mapping)
+
+
 # Log WeasyPrint output
 logger = logging.getLogger('weasyprint')
 logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
@@ -213,12 +219,6 @@ lessons = [1, 2, 3, 4]
 
 for level in levels:
     print(f'Level {level}')
-    # Create HTML template
-    template_filename = f'AS{level}-worksheets-template.html'
-    # Get contents of HTML template file
-    template_file_contents = get_template(filename=template_filename)
-    template_string = Template(template_file_contents)
-
     # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
     # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/unit1-output/Level {level}/'
     output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
@@ -233,11 +233,14 @@ for level in levels:
     #  (range() needs a +1 because it stops at the number before)
     for unit in units:
         for lesson in lessons:
+            # Create HTML template
+            template_filename = f'AS{level}-worksheets-template.html'
+            # Get contents of HTML template file
+            template_file_contents = get_template(filename=template_filename)
             # create mapping dict
             template_mapping = create_template_mapping(data=data, level=level, unit=unit, lesson=lesson)
-
             # Substitute
-            template_filled = template_string.safe_substitute(template_mapping)
+            template_filled = fill_template(template=template_file_contents, template_mapping=template_mapping)
             html = HTML(string=template_filled)
             # css = CSS(string=css_string, font_config=font_config)
             # html.write_pdf('/tmp/test-py.pdf',
