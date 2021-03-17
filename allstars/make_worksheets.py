@@ -202,9 +202,16 @@ def fill_template(template: str, template_mapping: dict[str, str]) -> str:
     return template_string.safe_substitute(template_mapping)
 
 
-# Log WeasyPrint output
-logger = logging.getLogger('weasyprint')
-logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
+# Output PDF
+def output_pdf(contents: str, filename: str):
+    # Log WeasyPrint output
+    logger = logging.getLogger('weasyprint')
+    logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
+    # Create Weasyprint HTML object
+    html = HTML(string=contents)
+    # Output PDF via Weasyprint
+    html.write_pdf(filename)
+
 
 # So far, we're only doing Level 1, but in the future, we'll have to deal
 #  with the others
@@ -242,17 +249,16 @@ for level in levels:
             # Substitute
             template_filled = fill_template(template=template_file_contents, template_mapping=template_mapping)
             html = HTML(string=template_filled)
-            # css = CSS(string=css_string, font_config=font_config)
-            # html.write_pdf('/tmp/test-py.pdf',
-            #                stylesheets=[css],
-            #                font_config=font_config)
+
             # The numbers used in the filename need to be zero filled
             f_level = str(level)
             f_unit = str(unit).zfill(2)
             f_lesson = str(lesson).zfill(2)
             # with open(f'{output_path}AS{f_level}U{f_unit}L{f_lesson}.html', 'w') as htmlfile:
             #     htmlfile.write(template_filled)
-            html.write_pdf(f'{output_path}AS{f_level}U{f_unit}L{f_lesson}.pdf')
+            output_filename = f'{output_path}AS{f_level}U{f_unit}L{f_lesson}.pdf'
+            # Output PDF
+            output_pdf(contents=template_filled, filename=output_filename)
 
             # Advance to the next row of stories and vocab
             # row += 3
