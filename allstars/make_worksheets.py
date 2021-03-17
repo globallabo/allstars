@@ -42,7 +42,7 @@ def get_data_for_level(level: str) -> list[str]:
 def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> dict[str, str]:
     # Set the row based on the unit and lesson
     row = 1 + ((unit - 1) * 12) + ((lesson - 1) * 3)
-    column = 3;
+    column = 3
 
     # Create substitution mapping
     template_mapping = dict()
