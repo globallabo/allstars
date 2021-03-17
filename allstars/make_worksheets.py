@@ -41,6 +41,155 @@ def get_data_for_level(level: str) -> list[str]:
     return sheet.get_all_values()
 
 
+# Create template mapping for one lesson at a time
+def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> dict[str, str]:
+    # Set the row based on the unit and lesson
+    row = 1 + ((unit - 1) * 12) + ((lesson - 1) * 3)
+
+    # Create substitution mapping
+    template_mapping = dict()
+    template_mapping["level"] = level
+    # These are used for the page header
+    template_mapping["unit"] = unit
+    template_mapping["lesson"] = lesson
+    # These are used for image naming
+    template_mapping["unit_zfill"] = str(unit).zfill(2)
+    template_mapping["lesson_zfill"] = str(lesson).zfill(2)
+
+    print(f'Unit: {unit}, Lesson: {lesson}')
+
+    if level != 5:
+        template_mapping["story_en"] = data[row][column]
+        template_mapping["story_jp"] = data[row + 1][column]
+
+        # Level 1 is separate because of the vocab section including images
+        if level == 1:
+            # set list vars
+            vocab_en = []
+            vocab_jp = []
+            # Set some HTML strings for the yes/no overlays
+            image_overlay_yes = "<img class=\"yes-no\" src=\"images/yes.png\" alt=\"\">"
+            image_overlay_no = "<img class=\"yes-no\" src=\"images/no.png\" alt=\"\">"
+            image_overlay_none = ""
+            if lesson == 1:
+                vocab_nums = [1, 2, 3, 4]
+                template_mapping["image_overlay"] = image_overlay_none
+            elif lesson == 2:
+                vocab_nums = [5, 6, 7, 8]
+                template_mapping["image_overlay"] = image_overlay_none
+            elif lesson == 3:
+                vocab_nums = [1, 2, 3, 4]
+                template_mapping["image_overlay"] = image_overlay_yes
+            elif lesson == 4:
+                vocab_nums = [5, 6, 7, 8]
+                template_mapping["image_overlay"] = image_overlay_no
+            for k in range(1, 5):
+                vocab_en.append(data[row][column + k])
+                # At least one lesson has fewer than four vocab words
+                if not vocab_en[k - 1]:
+                    template_mapping["no_vocab4"] = "no_vocab4"
+                else:
+                    # -1 because the range is 1-5, while the list is 0-4
+                    template_mapping["vocab" + str(k) + "_en"] = vocab_en[k - 1]
+                    vocab_jp.append(data[row + 1][column + k])
+                    # -1 because the range is 1-5, while the list is 0-4
+                    template_mapping["vocab" + str(k) + "_jp"] = vocab_jp[k - 1]
+                    # Map the vocab image numbers for pages 1 and 2
+                    template_mapping["vocab_img" + str(k)] = vocab_nums[k - 1]
+            # writing sentences
+            template_mapping["wsentence1_en"] = data[row][column + 13].strip()
+            template_mapping["blank1_en"] = make_blank_string(
+                len(template_mapping["wsentence1_en"]))
+            template_mapping["wsentence2_en"] = data[row][column + 14].strip()
+            template_mapping["blank2_en"] = make_blank_string(
+                len(template_mapping["wsentence2_en"]))
+            template_mapping["wsentence1_jp"] = data[row + 1][column + 13].strip()
+            template_mapping["wsentence2_jp"] = data[row + 1][column + 14].strip()
+
+        # reading sentences
+        template_mapping["sentence1a_en"] = data[row][column + 5].strip()
+        print(template_mapping["sentence1a_en"])
+        print(len(template_mapping["sentence1a_en"]))
+        template_mapping["blank1a_en"] = make_blank_string(
+            len(template_mapping["sentence1a_en"]))
+
+        template_mapping["sentence1b_en"] = data[row][column + 6].strip()
+        print(template_mapping["sentence1b_en"])
+        print(len(template_mapping["sentence1b_en"]))
+        template_mapping["blank1b_en"] = make_blank_string(
+            len(template_mapping["sentence1b_en"]))
+
+        template_mapping["sentence2a_en"] = data[row][column + 7].strip()
+        print(template_mapping["sentence2a_en"])
+        print(len(template_mapping["sentence2a_en"]))
+        template_mapping["blank2a_en"] = make_blank_string(
+            len(template_mapping["sentence2a_en"]))
+
+        template_mapping["sentence2b_en"] = data[row][column + 8].strip()
+        print(template_mapping["sentence2b_en"])
+        print(len(template_mapping["sentence2b_en"]))
+        template_mapping["blank2b_en"] = make_blank_string(
+            len(template_mapping["sentence2b_en"]))
+
+        template_mapping["sentence3a_en"] = data[row][column + 9].strip()
+        print(template_mapping["sentence3a_en"])
+        print(len(template_mapping["sentence3a_en"]))
+        template_mapping["blank3a_en"] = make_blank_string(
+            len(template_mapping["sentence3a_en"]))
+
+        template_mapping["sentence3b_en"] = data[row][column + 10].strip()
+        print(template_mapping["sentence3b_en"])
+        print(len(template_mapping["sentence3b_en"]))
+        template_mapping["blank3b_en"] = make_blank_string(
+            len(template_mapping["sentence3b_en"]))
+
+        template_mapping["sentence4a_en"] = data[row][column + 11].strip()
+        print(template_mapping["sentence4a_en"])
+        print(len(template_mapping["sentence4a_en"]))
+        template_mapping["blank4a_en"] = make_blank_string(
+            len(template_mapping["sentence4a_en"]))
+
+        template_mapping["sentence4b_en"] = data[row][column + 12].strip()
+        print(template_mapping["sentence4b_en"])
+        print(len(template_mapping["sentence4b_en"]))
+        template_mapping["blank4b_en"] = make_blank_string(
+            len(template_mapping["sentence4b_en"]))
+
+        template_mapping["sentence1a_jp"] = data[row + 1][column + 5]
+        template_mapping["sentence1b_jp"] = data[row + 1][column + 6]
+        template_mapping["sentence2a_jp"] = data[row + 1][column + 7]
+        template_mapping["sentence2b_jp"] = data[row + 1][column + 8]
+        template_mapping["sentence3a_jp"] = data[row + 1][column + 9]
+        template_mapping["sentence3b_jp"] = data[row + 1][column + 10]
+        template_mapping["sentence4a_jp"] = data[row + 1][column + 11]
+        template_mapping["sentence4b_jp"] = data[row + 1][column + 12]
+
+    else:
+        # ***NO LONGER TRUE -> Level 5 has an extra column (situation) before the stories
+        # Consider refactoring back into the main code
+        template_mapping["story_en"] = data[row][column]
+        template_mapping["story_jp"] = data[row + 1][column]
+        print(f'Story (EN): {template_mapping["story_en"]}')
+        print(f'Story (JP): {template_mapping["story_jp"]}')
+
+        # reading/writing sentences
+        template_mapping["sentence1a_en"] = replace_blank(data[row][column + 1].strip())
+        print(template_mapping["sentence1a_en"])
+        print(len(template_mapping["sentence1a_en"]))
+        template_mapping["blank1a_en"] = make_blank_string(
+            len(template_mapping["sentence1a_en"]))
+
+        template_mapping["sentence1b_en"] = replace_blank(data[row][column + 2].strip())
+        print(template_mapping["sentence1b_en"])
+        print(len(template_mapping["sentence1b_en"]))
+        template_mapping["blank1b_en"] = make_blank_string(
+            len(template_mapping["sentence1b_en"]))
+
+        template_mapping["sentence1a_jp"] = data[row + 1][column + 1]
+        template_mapping["sentence1b_jp"] = data[row + 1][column + 2]
+    return template_mapping
+
+
 # Log WeasyPrint output
 logger = logging.getLogger('weasyprint')
 logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
@@ -82,150 +231,8 @@ for level in levels:
     #  (range() needs a +1 because it stops at the number before)
     for unit in units:
         for lesson in lessons:
-            # Set the row based on the unit and lesson
-            row = 1 + ((unit - 1) * 12) + ((lesson - 1) * 3)
-
-            # Create substitution mapping
-            template_mapping = dict()
-            template_mapping["level"] = level
-            # These are used for the page header
-            template_mapping["unit"] = unit
-            template_mapping["lesson"] = lesson
-            # These are used for image naming
-            template_mapping["unit_zfill"] = str(unit).zfill(2)
-            template_mapping["lesson_zfill"] = str(lesson).zfill(2)
-
-            print(f'Unit: {unit}, Lesson: {lesson}')
-
-            if level != 5:
-                template_mapping["story_en"] = data[row][column]
-                template_mapping["story_jp"] = data[row + 1][column]
-
-                # Level 1 is separate because of the vocab section including images
-                if level == 1:
-                    # set list vars
-                    vocab_en = []
-                    vocab_jp = []
-                    # Set some HTML strings for the yes/no overlays
-                    image_overlay_yes = "<img class=\"yes-no\" src=\"images/yes.png\" alt=\"\">"
-                    image_overlay_no = "<img class=\"yes-no\" src=\"images/no.png\" alt=\"\">"
-                    image_overlay_none = ""
-                    if lesson == 1:
-                        vocab_nums = [1, 2, 3, 4]
-                        template_mapping["image_overlay"] = image_overlay_none
-                    elif lesson == 2:
-                        vocab_nums = [5, 6, 7, 8]
-                        template_mapping["image_overlay"] = image_overlay_none
-                    elif lesson == 3:
-                        vocab_nums = [1, 2, 3, 4]
-                        template_mapping["image_overlay"] = image_overlay_yes
-                    elif lesson == 4:
-                        vocab_nums = [5, 6, 7, 8]
-                        template_mapping["image_overlay"] = image_overlay_no
-                    for k in range(1, 5):
-                        vocab_en.append(data[row][column + k])
-                        # At least one lesson has fewer than four vocab words
-                        if not vocab_en[k - 1]:
-                            template_mapping["no_vocab4"] = "no_vocab4"
-                        else:
-                            # -1 because the range is 1-5, while the list is 0-4
-                            template_mapping["vocab" + str(k) + "_en"] = vocab_en[k - 1]
-                            vocab_jp.append(data[row + 1][column + k])
-                            # -1 because the range is 1-5, while the list is 0-4
-                            template_mapping["vocab" + str(k) + "_jp"] = vocab_jp[k - 1]
-                            # Map the vocab image numbers for pages 1 and 2
-                            template_mapping["vocab_img" + str(k)] = vocab_nums[k - 1]
-                    # writing sentences
-                    template_mapping["wsentence1_en"] = data[row][column + 13].strip()
-                    template_mapping["blank1_en"] = make_blank_string(
-                        len(template_mapping["wsentence1_en"]))
-                    template_mapping["wsentence2_en"] = data[row][column + 14].strip()
-                    template_mapping["blank2_en"] = make_blank_string(
-                        len(template_mapping["wsentence2_en"]))
-                    template_mapping["wsentence1_jp"] = data[row + 1][column + 13].strip()
-                    template_mapping["wsentence2_jp"] = data[row + 1][column + 14].strip()
-
-                # reading sentences
-                template_mapping["sentence1a_en"] = data[row][column + 5].strip()
-                print(template_mapping["sentence1a_en"])
-                print(len(template_mapping["sentence1a_en"]))
-                template_mapping["blank1a_en"] = make_blank_string(
-                    len(template_mapping["sentence1a_en"]))
-
-                template_mapping["sentence1b_en"] = data[row][column + 6].strip()
-                print(template_mapping["sentence1b_en"])
-                print(len(template_mapping["sentence1b_en"]))
-                template_mapping["blank1b_en"] = make_blank_string(
-                    len(template_mapping["sentence1b_en"]))
-
-                template_mapping["sentence2a_en"] = data[row][column + 7].strip()
-                print(template_mapping["sentence2a_en"])
-                print(len(template_mapping["sentence2a_en"]))
-                template_mapping["blank2a_en"] = make_blank_string(
-                    len(template_mapping["sentence2a_en"]))
-
-                template_mapping["sentence2b_en"] = data[row][column + 8].strip()
-                print(template_mapping["sentence2b_en"])
-                print(len(template_mapping["sentence2b_en"]))
-                template_mapping["blank2b_en"] = make_blank_string(
-                    len(template_mapping["sentence2b_en"]))
-
-                template_mapping["sentence3a_en"] = data[row][column + 9].strip()
-                print(template_mapping["sentence3a_en"])
-                print(len(template_mapping["sentence3a_en"]))
-                template_mapping["blank3a_en"] = make_blank_string(
-                    len(template_mapping["sentence3a_en"]))
-
-                template_mapping["sentence3b_en"] = data[row][column + 10].strip()
-                print(template_mapping["sentence3b_en"])
-                print(len(template_mapping["sentence3b_en"]))
-                template_mapping["blank3b_en"] = make_blank_string(
-                    len(template_mapping["sentence3b_en"]))
-
-                template_mapping["sentence4a_en"] = data[row][column + 11].strip()
-                print(template_mapping["sentence4a_en"])
-                print(len(template_mapping["sentence4a_en"]))
-                template_mapping["blank4a_en"] = make_blank_string(
-                    len(template_mapping["sentence4a_en"]))
-
-                template_mapping["sentence4b_en"] = data[row][column + 12].strip()
-                print(template_mapping["sentence4b_en"])
-                print(len(template_mapping["sentence4b_en"]))
-                template_mapping["blank4b_en"] = make_blank_string(
-                    len(template_mapping["sentence4b_en"]))
-
-                template_mapping["sentence1a_jp"] = data[row + 1][column + 5]
-                template_mapping["sentence1b_jp"] = data[row + 1][column + 6]
-                template_mapping["sentence2a_jp"] = data[row + 1][column + 7]
-                template_mapping["sentence2b_jp"] = data[row + 1][column + 8]
-                template_mapping["sentence3a_jp"] = data[row + 1][column + 9]
-                template_mapping["sentence3b_jp"] = data[row + 1][column + 10]
-                template_mapping["sentence4a_jp"] = data[row + 1][column + 11]
-                template_mapping["sentence4b_jp"] = data[row + 1][column + 12]
-
-            else:
-                # ***NO LONGER TRUE -> Level 5 has an extra column (situation) before the stories
-                # Consider refactoring back into the main code
-                template_mapping["story_en"] = data[row][column]
-                template_mapping["story_jp"] = data[row + 1][column]
-                print(f'Story (EN): {template_mapping["story_en"]}')
-                print(f'Story (JP): {template_mapping["story_jp"]}')
-
-                # reading/writing sentences
-                template_mapping["sentence1a_en"] = replace_blank(data[row][column + 1].strip())
-                print(template_mapping["sentence1a_en"])
-                print(len(template_mapping["sentence1a_en"]))
-                template_mapping["blank1a_en"] = make_blank_string(
-                    len(template_mapping["sentence1a_en"]))
-
-                template_mapping["sentence1b_en"] = replace_blank(data[row][column + 2].strip())
-                print(template_mapping["sentence1b_en"])
-                print(len(template_mapping["sentence1b_en"]))
-                template_mapping["blank1b_en"] = make_blank_string(
-                    len(template_mapping["sentence1b_en"]))
-
-                template_mapping["sentence1a_jp"] = data[row + 1][column + 1]
-                template_mapping["sentence1b_jp"] = data[row + 1][column + 2]
+            # create mapping dict
+            template_mapping = create_template_mapping(data=data, level=level, unit=unit, lesson=lesson)
 
             # Substitute
             template_filled = template_string.safe_substitute(template_mapping)
