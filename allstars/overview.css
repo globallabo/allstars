@@ -1,6 +1,6 @@
 @page {
   size: A3 landscape;
-  margin: 3cm;
+  margin: 1cm 3cm;
 }
 
 @font-face {
@@ -46,6 +46,10 @@ body {
   font-family: "NotoSansJP-Regular";
 }
 
+.logo {
+  width: 3cm;
+}
+
 table {
   border-collapse: collapse;
   /* border: 1pt solid #333; */
@@ -53,7 +57,7 @@ table {
   width: 100%;
 }
 th,td {
-  border: 1pt solid #333;
+  border: 1pt solid #999;
   padding: 2pt;
   vertical-align: middle;
 }
@@ -66,6 +70,29 @@ thead th {
 }
 .empty {
   border: none;
+}
+table caption {
+  text-align: left;
+  margin-left: 4cm;
+  margin-bottom: 4pt;
+}
+
+tbody tr {
+  height: 1.2cm;
+}
+
+.level {
+  width: 1.5cm;
+}
+.lesson {
+  width: 2cm;
+}
+
+/* .target {
+  width: 20cm;
+} */
+.vocab {
+  width: 50%;
 }
 
 td .en {
