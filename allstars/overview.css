@@ -1,0 +1,74 @@
+@page {
+  size: A3 landscape;
+  margin: 3cm;
+}
+
+@font-face {
+  font-family: "NotoSansJP-Regular";
+  src: url(file:///Users/cbunn/projects/allstars/allstars/fonts/NotoSansJP-Regular.otf)  format("opentype");
+}
+@font-face {
+  font-family: "NotoSansJP-Medium";
+  src: url(file:///Users/cbunn/projects/allstars/allstars/fonts/NotoSansJP-Medium.otf)  format("opentype");
+}
+@font-face {
+  font-family: "NotoSansJP-Bold";
+  src: url(file:///Users/cbunn/projects/allstars/allstars/fonts/NotoSansJP-Bold.otf)  format("opentype");
+}
+
+/* Define variables */
+:root {
+  --main-text-color: #333;
+  --main-font-size: 8pt;
+  --header-font-size: 10pt;
+  --main-p-margin: 0.25rem;
+  --main-line-height: 0.9rem;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  height: 100%;
+}
+body {
+  font-family: "NotoSansJP-Regular";
+  font-size: var(--main-font-size);
+  /* font-kerning: none; */
+  /* font-variant-ligatures: no-common-ligatures; */
+  color: var(--main-text-color);
+}
+.jp {
+  font-family: "NotoSansJP-Regular";
+}
+
+table {
+  border-collapse: collapse;
+  /* border: 1pt solid #333; */
+  height: 90%;
+  width: 100%;
+}
+th,td {
+  border: 1pt solid #333;
+  padding: 2pt;
+  vertical-align: middle;
+}
+th {
+  font-weight: normal;
+  text-align: center;
+}
+thead th {
+  font-weight: bold;
+}
+.empty {
+  border: none;
+}
+
+td .en {
+  display: block;
+  margin-bottom: 6pt;
+}
