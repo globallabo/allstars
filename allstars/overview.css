@@ -100,6 +100,10 @@ td .en {
   margin-bottom: 6pt;
 }
 
+.level5 .vocab {
+  display: none;
+}
+
 
 .blank {
   letter-spacing: -2pt;
