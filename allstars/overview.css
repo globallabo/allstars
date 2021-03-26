@@ -88,14 +88,20 @@ tbody tr {
   width: 2cm;
 }
 
-/* .target {
+/* .target-label {
   width: 20cm;
 } */
-.vocab {
+.vocab-label {
   width: 50%;
 }
 
 td .en {
   display: block;
   margin-bottom: 6pt;
+}
+
+
+.blank {
+  letter-spacing: -2pt;
+  margin-right: 1pt;
 }

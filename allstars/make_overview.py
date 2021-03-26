@@ -54,44 +54,43 @@ def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> d
     template_mapping["unit_zfill"] = str(unit).zfill(2)
     template_mapping["lesson_zfill"] = str(lesson).zfill(2)
 
-    if level != 5:
-        template_mapping["story_en"] = data[row][column]
-        template_mapping["story_jp"] = data[row + 1][column]
+    template_mapping["story_en"] = data[row][column]
+    template_mapping["story_jp"] = data[row + 1][column]
 
-        # Level 1 is separate because of the vocab section including images
+    if level != 5:
+        # set list vars
+        vocab_en = []
+        vocab_jp = []
+        # Set some HTML strings for the yes/no overlays
+        image_overlay_yes = "<img class=\"yes-no\" src=\"images/yes.png\" alt=\"\">"
+        image_overlay_no = "<img class=\"yes-no\" src=\"images/no.png\" alt=\"\">"
+        image_overlay_none = ""
+        if lesson == 1:
+            vocab_nums = [1, 2, 3, 4]
+            template_mapping["image_overlay"] = image_overlay_none
+        elif lesson == 2:
+            vocab_nums = [5, 6, 7, 8]
+            template_mapping["image_overlay"] = image_overlay_none
+        elif lesson == 3:
+            vocab_nums = [1, 2, 3, 4]
+            template_mapping["image_overlay"] = image_overlay_yes
+        elif lesson == 4:
+            vocab_nums = [5, 6, 7, 8]
+            template_mapping["image_overlay"] = image_overlay_no
+        for k in range(1, 5):
+            vocab_en.append(data[row][column + k])
+            # At least one lesson has fewer than four vocab words
+            if not vocab_en[k - 1]:
+                template_mapping["no_vocab4"] = "no_vocab4"
+            else:
+                # -1 because the range is 1-5, while the list is 0-4
+                template_mapping["vocab" + str(k) + "_en"] = vocab_en[k - 1]
+                vocab_jp.append(data[row + 1][column + k])
+                # -1 because the range is 1-5, while the list is 0-4
+                template_mapping["vocab" + str(k) + "_jp"] = vocab_jp[k - 1]
+                # Map the vocab image numbers for pages 1 and 2
+                template_mapping["vocab_img" + str(k)] = vocab_nums[k - 1]
         if level == 1:
-            # set list vars
-            vocab_en = []
-            vocab_jp = []
-            # Set some HTML strings for the yes/no overlays
-            image_overlay_yes = "<img class=\"yes-no\" src=\"images/yes.png\" alt=\"\">"
-            image_overlay_no = "<img class=\"yes-no\" src=\"images/no.png\" alt=\"\">"
-            image_overlay_none = ""
-            if lesson == 1:
-                vocab_nums = [1, 2, 3, 4]
-                template_mapping["image_overlay"] = image_overlay_none
-            elif lesson == 2:
-                vocab_nums = [5, 6, 7, 8]
-                template_mapping["image_overlay"] = image_overlay_none
-            elif lesson == 3:
-                vocab_nums = [1, 2, 3, 4]
-                template_mapping["image_overlay"] = image_overlay_yes
-            elif lesson == 4:
-                vocab_nums = [5, 6, 7, 8]
-                template_mapping["image_overlay"] = image_overlay_no
-            for k in range(1, 5):
-                vocab_en.append(data[row][column + k])
-                # At least one lesson has fewer than four vocab words
-                if not vocab_en[k - 1]:
-                    template_mapping["no_vocab4"] = "no_vocab4"
-                else:
-                    # -1 because the range is 1-5, while the list is 0-4
-                    template_mapping["vocab" + str(k) + "_en"] = vocab_en[k - 1]
-                    vocab_jp.append(data[row + 1][column + k])
-                    # -1 because the range is 1-5, while the list is 0-4
-                    template_mapping["vocab" + str(k) + "_jp"] = vocab_jp[k - 1]
-                    # Map the vocab image numbers for pages 1 and 2
-                    template_mapping["vocab_img" + str(k)] = vocab_nums[k - 1]
             # writing sentences
             template_mapping["wsentence1_en"] = data[row][column + 13].strip()
             template_mapping["blank1_en"] = make_blank_string(
@@ -145,11 +144,6 @@ def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> d
         template_mapping["sentence4b_jp"] = data[row + 1][column + 12]
 
     else:
-        # ***NO LONGER TRUE -> Level 5 has an extra column (situation) before the stories
-        # Consider refactoring back into the main code
-        template_mapping["story_en"] = data[row][column]
-        template_mapping["story_jp"] = data[row + 1][column]
-
         # reading/writing sentences
         template_mapping["sentence1a_en"] = replace_blank(data[row][column + 1].strip())
         template_mapping["blank1a_en"] = make_blank_string(
