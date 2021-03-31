@@ -3,6 +3,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 # from pprint import pprint
 from weasyprint import HTML
 from string import Template
+import pathlib
 import logging
 
 
@@ -46,6 +47,7 @@ def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> d
 
     # Create substitution mapping
     template_mapping = dict()
+    template_mapping["template_path"] = pathlib.Path(__file__).parent.absolute()
     template_mapping["level"] = level
     # These are used for the page header
     template_mapping["unit"] = unit
