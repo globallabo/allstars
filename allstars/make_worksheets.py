@@ -33,10 +33,15 @@ def get_data_for_level(level: str) -> list[str]:
              "https://www.googleapis.com/auth/spreadsheets",
              "https://www.googleapis.com/auth/drive.file",
              "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
-    client = gspread.authorize(creds)
-    sheet = client.open("all_stars_revised_0128").worksheet(f"Level {level}")
-    return sheet.get_all_values()
+    try:
+        creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
+        client = gspread.authorize(creds)
+        sheet = client.open("all_stars_revised_0128").worksheet(f"Level {level}")
+        return sheet.get_all_values()
+    except FileNotFoundError as fnf_error:
+        print(fnf_error)
+        return []
+
 
 
 # Create template mapping for one lesson at a time
@@ -195,8 +200,12 @@ def main(levels: list, units: list, lessons: list):
         print(f'Level {level}')
         # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
         # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/unit1-output/Level {level}/'
-        output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
+        # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
+        output_path = f'/mnt/c/Users/chris/projects/allstars/output/Level {level}/'
         data = get_data_for_level(level)
+        if not data:
+            print("Cannot access Google Sheet data.")
+            return
         # Loop through all Units and Lessons
         #  (range() needs a +1 because it stops at the number before)
         for unit in units:
