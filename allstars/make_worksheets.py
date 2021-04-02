@@ -201,7 +201,8 @@ def main(levels: list, units: list, lessons: list):
         # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
         # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/unit1-output/Level {level}/'
         # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
-        output_path = f'/mnt/c/Users/chris/projects/allstars/output/Level {level}/'
+        output_path = pathlib.Path(__file__).parent.parent.absolute() / f'output/Level {level}/'
+        print(f'Output path: {output_path}')
         data = get_data_for_level(level)
         if not data:
             print("Cannot access Google Sheet data.")
@@ -223,7 +224,7 @@ def main(levels: list, units: list, lessons: list):
                 f_level = str(level)
                 f_unit = str(unit).zfill(2)
                 f_lesson = str(lesson).zfill(2)
-                output_filename = f'{output_path}AS{f_level}U{f_unit}L{f_lesson}.pdf'
+                output_filename = f'{output_path}/AS{f_level}U{f_unit}L{f_lesson}.pdf'
                 # Output PDF
                 output_pdf(contents=template_filled, filename=output_filename)
 
