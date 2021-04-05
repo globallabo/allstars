@@ -1,5 +1,6 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+
 # from pprint import pprint
 from weasyprint import HTML
 from string import Template
@@ -13,13 +14,13 @@ def make_blank_string(length, max_length=27):
     ratio = 0.6  # Level 1, max=16
     # ratio = 0.667 # Level 2, max=27
     if round(ratio * length) > max_length:
-        return '_' * max_length
+        return "_" * max_length
     else:
-        return '_' * round(ratio * length)
+        return "_" * round(ratio * length)
 
 
 def replace_blank(string):
-    find_blank = '__'
+    find_blank = "__"
     new_blank = '<span class="blank">__________</span>'
     if find_blank in string:
         string = string.replace(find_blank, new_blank)
@@ -29,10 +30,12 @@ def replace_blank(string):
 # Get data from google Sheet (one level at a time)
 def get_data_for_level(level: str) -> list[str]:
     # Fetch data from Google Sheet
-    scope = ["https://spreadsheets.google.com/feeds",
-             "https://www.googleapis.com/auth/spreadsheets",
-             "https://www.googleapis.com/auth/drive.file",
-             "https://www.googleapis.com/auth/drive"]
+    scope = [
+        "https://spreadsheets.google.com/feeds",
+        "https://www.googleapis.com/auth/spreadsheets",
+        "https://www.googleapis.com/auth/drive.file",
+        "https://www.googleapis.com/auth/drive",
+    ]
     try:
         creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
         client = gspread.authorize(creds)
@@ -43,9 +46,10 @@ def get_data_for_level(level: str) -> list[str]:
         return []
 
 
-
 # Create template mapping for one lesson at a time
-def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> dict[str, str]:
+def create_template_mapping(
+    data: list, level: int, unit: int, lesson: int
+) -> dict[str, str]:
     # Set the row based on the unit and lesson
     row = 1 + ((unit - 1) * 12) + ((lesson - 1) * 3)
     column = 3
@@ -71,8 +75,8 @@ def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> d
             vocab_en = []
             vocab_jp = []
             # Set some HTML strings for the yes/no overlays
-            image_overlay_yes = "<img class=\"yes-no\" src=\"images/yes.png\" alt=\"\">"
-            image_overlay_no = "<img class=\"yes-no\" src=\"images/no.png\" alt=\"\">"
+            image_overlay_yes = '<img class="yes-no" src="images/yes.png" alt="">'
+            image_overlay_no = '<img class="yes-no" src="images/no.png" alt="">'
             image_overlay_none = ""
             if lesson == 1:
                 vocab_nums = [1, 2, 3, 4]
@@ -102,45 +106,55 @@ def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> d
             # writing sentences
             template_mapping["wsentence1_en"] = data[row][column + 13].strip()
             template_mapping["blank1_en"] = make_blank_string(
-                len(template_mapping["wsentence1_en"]))
+                len(template_mapping["wsentence1_en"])
+            )
             template_mapping["wsentence2_en"] = data[row][column + 14].strip()
             template_mapping["blank2_en"] = make_blank_string(
-                len(template_mapping["wsentence2_en"]))
+                len(template_mapping["wsentence2_en"])
+            )
             template_mapping["wsentence1_jp"] = data[row + 1][column + 13].strip()
             template_mapping["wsentence2_jp"] = data[row + 1][column + 14].strip()
 
         # reading sentences
         template_mapping["sentence1a_en"] = data[row][column + 5].strip()
         template_mapping["blank1a_en"] = make_blank_string(
-            len(template_mapping["sentence1a_en"]))
+            len(template_mapping["sentence1a_en"])
+        )
 
         template_mapping["sentence1b_en"] = data[row][column + 6].strip()
         template_mapping["blank1b_en"] = make_blank_string(
-            len(template_mapping["sentence1b_en"]))
+            len(template_mapping["sentence1b_en"])
+        )
 
         template_mapping["sentence2a_en"] = data[row][column + 7].strip()
         template_mapping["blank2a_en"] = make_blank_string(
-            len(template_mapping["sentence2a_en"]))
+            len(template_mapping["sentence2a_en"])
+        )
 
         template_mapping["sentence2b_en"] = data[row][column + 8].strip()
         template_mapping["blank2b_en"] = make_blank_string(
-            len(template_mapping["sentence2b_en"]))
+            len(template_mapping["sentence2b_en"])
+        )
 
         template_mapping["sentence3a_en"] = data[row][column + 9].strip()
         template_mapping["blank3a_en"] = make_blank_string(
-            len(template_mapping["sentence3a_en"]))
+            len(template_mapping["sentence3a_en"])
+        )
 
         template_mapping["sentence3b_en"] = data[row][column + 10].strip()
         template_mapping["blank3b_en"] = make_blank_string(
-            len(template_mapping["sentence3b_en"]))
+            len(template_mapping["sentence3b_en"])
+        )
 
         template_mapping["sentence4a_en"] = data[row][column + 11].strip()
         template_mapping["blank4a_en"] = make_blank_string(
-            len(template_mapping["sentence4a_en"]))
+            len(template_mapping["sentence4a_en"])
+        )
 
         template_mapping["sentence4b_en"] = data[row][column + 12].strip()
         template_mapping["blank4b_en"] = make_blank_string(
-            len(template_mapping["sentence4b_en"]))
+            len(template_mapping["sentence4b_en"])
+        )
 
         template_mapping["sentence1a_jp"] = data[row + 1][column + 5]
         template_mapping["sentence1b_jp"] = data[row + 1][column + 6]
@@ -160,11 +174,13 @@ def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> d
         # reading/writing sentences
         template_mapping["sentence1a_en"] = replace_blank(data[row][column + 1].strip())
         template_mapping["blank1a_en"] = make_blank_string(
-            len(template_mapping["sentence1a_en"]))
+            len(template_mapping["sentence1a_en"])
+        )
 
         template_mapping["sentence1b_en"] = replace_blank(data[row][column + 2].strip())
         template_mapping["blank1b_en"] = make_blank_string(
-            len(template_mapping["sentence1b_en"]))
+            len(template_mapping["sentence1b_en"])
+        )
 
         template_mapping["sentence1a_jp"] = data[row + 1][column + 1]
         template_mapping["sentence1b_jp"] = data[row + 1][column + 2]
@@ -187,8 +203,8 @@ def fill_template(template: str, template_mapping: dict[str, str]) -> str:
 # Output PDF
 def output_pdf(contents: str, filename: str):
     # Log WeasyPrint output
-    logger = logging.getLogger('weasyprint')
-    logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
+    logger = logging.getLogger("weasyprint")
+    logger.addHandler(logging.FileHandler("/tmp/weasyprint.log"))
     # Create Weasyprint HTML object
     html = HTML(string=contents)
     # Output PDF via Weasyprint
@@ -197,13 +213,15 @@ def output_pdf(contents: str, filename: str):
 
 def main(levels: list, units: list, lessons: list):
     for level in levels:
-        print(f'Level {level}')
+        print(f"Level {level}")
         # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
         # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/unit1-output/Level {level}/'
         # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
-        output_path = pathlib.Path(__file__).parent.parent.absolute() / f'output/Level {level}/'
+        output_path = (
+            pathlib.Path(__file__).parent.parent.absolute() / f"output/Level {level}/"
+        )
         pathlib.Path(output_path).mkdir(parents=True, exist_ok=True)
-        print(f'Output path: {output_path}')
+        print(f"Output path: {output_path}")
         data = get_data_for_level(level)
         if not data:
             print("Cannot access Google Sheet data.")
@@ -212,20 +230,24 @@ def main(levels: list, units: list, lessons: list):
         #  (range() needs a +1 because it stops at the number before)
         for unit in units:
             for lesson in lessons:
-                print(f'Unit: {unit}, Lesson: {lesson}')
+                print(f"Unit: {unit}, Lesson: {lesson}")
                 # Create HTML template
-                template_filename = f'AS{level}-worksheets-template.html'
+                template_filename = f"AS{level}-worksheets-template.html"
                 # Get contents of HTML template file
                 template_file_contents = get_template(filename=template_filename)
                 # create mapping dict
-                template_mapping = create_template_mapping(data=data, level=level, unit=unit, lesson=lesson)
+                template_mapping = create_template_mapping(
+                    data=data, level=level, unit=unit, lesson=lesson
+                )
                 # Substitute
-                template_filled = fill_template(template=template_file_contents, template_mapping=template_mapping)
+                template_filled = fill_template(
+                    template=template_file_contents, template_mapping=template_mapping
+                )
                 # The numbers used in the filename need to be zero filled
                 f_level = str(level)
                 f_unit = str(unit).zfill(2)
                 f_lesson = str(lesson).zfill(2)
-                output_filename = f'{output_path}/AS{f_level}U{f_unit}L{f_lesson}.pdf'
+                output_filename = f"{output_path}/AS{f_level}U{f_unit}L{f_lesson}.pdf"
                 # Output PDF
                 output_pdf(contents=template_filled, filename=output_filename)
 
