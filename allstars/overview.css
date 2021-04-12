@@ -50,6 +50,11 @@ body {
   width: 3cm;
 }
 
+.unit {
+  page-break-after: always;
+  page-break-inside: avoid;
+}
+
 table {
   border-collapse: collapse;
   /* border: 1pt solid #333; */

@@ -185,6 +185,11 @@ def output_pdf(contents: str, filename: str):
 
 
 def main(levels: list, units: list, lessons: list):
+    # Get all data for all levels once and store, to avoid Google's rate limit
+    data= dict()
+    for level in levels:
+        data[level] = get_data_for_level(level)
+    
     # Start HTML template
     template_start_filename = 'overview-template-start.html'
     # Get contents of HTML template file
@@ -212,13 +217,13 @@ def main(levels: list, units: list, lessons: list):
         #  (range() needs a +1 because it stops at the number before)
         for level in levels:
             for lesson in lessons:
-                print(f'Level: {level}, Lesson: {lesson}')
-                data = get_data_for_level(level)
+                # print(f'Level: {level}, Lesson: {lesson}')
+                # data = get_data_for_level(level)
                 # Create HTML template
                 template_lesson_filename = 'overview-template-lesson.html'
                 template_lesson_file_contents = get_template(filename=template_lesson_filename)
                 # create mapping dict
-                template_mapping = create_template_mapping(data=data, level=level, unit=unit, lesson=lesson)
+                template_mapping = create_template_mapping(data=data[level], level=level, unit=unit, lesson=lesson)
                 # Add key/var pair for the Level number on the first lesson
                 if lesson == 1:
                     template_mapping['level_label'] = f'<th rowspan="4" scope="row" class="level">Level {level}</th>'
@@ -241,7 +246,7 @@ if __name__ == "__main__":
     #  with the others
     levels = [1, 2, 3, 4, 5]
     # units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-    units = [1]
+    units = [1, 2, 3]
     # units = [4, 6, 10, 14]
     lessons = [1, 2, 3, 4]
     # lessons = [2]
