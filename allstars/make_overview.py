@@ -3,6 +3,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 # from pprint import pprint
 from weasyprint import HTML
 from string import Template
+import pathlib
 import logging
 
 
@@ -46,6 +47,7 @@ def create_template_mapping(data: list, level: int, unit: int, lesson: int) -> d
 
     # Create substitution mapping
     template_mapping = dict()
+    template_mapping["template_path"] = pathlib.Path(__file__).parent.absolute()
     template_mapping["level"] = level
     # These are used for the page header
     template_mapping["unit"] = unit
@@ -186,12 +188,19 @@ def main(levels: list, units: list, lessons: list):
     # Start HTML template
     template_start_filename = 'overview-template-start.html'
     # Get contents of HTML template file
-    template_string = get_template(filename=template_start_filename)
+    template_start_contents = get_template(filename=template_start_filename)
+    start_mapping = {"template_path": pathlib.Path(__file__).parent.absolute()}
+    template_start_filled = fill_template(template=template_start_contents, template_mapping=start_mapping)
+    template_string = template_start_filled
     for unit in units:
         print(f'Unit {unit}')
         # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Worksheets/Level {level}/'
         # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/unit1-output/Level {level}/'
-        output_path = '/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/'
+        output_path = (
+            pathlib.Path(__file__).parent.parent.absolute() / "output/"
+        )
+        pathlib.Path(output_path).mkdir(parents=True, exist_ok=True)
+        print(f"Output path: {output_path}")
 
         # Add Unit HTML to template
         template_unit_filename = 'overview-template-unit.html'
@@ -223,7 +232,7 @@ def main(levels: list, units: list, lessons: list):
     # Get contents of HTML template file
     template_string += get_template(filename=template_end_filename)
     # Output PDF
-    output_filename = f'{output_path}overview.pdf'
+    output_filename = f"{output_path}/overview.pdf"
     output_pdf(contents=template_string, filename=output_filename)
 
 
