@@ -232,6 +232,11 @@ def main(levels: list, units: list, lessons: list):
                 # Substitute
                 template_lesson_filled = fill_template(template=template_lesson_file_contents, template_mapping=template_mapping)
                 template_string += template_lesson_filled
+        # Don't forget to close each unit's table and section
+        template_unit_end_filename = 'overview-template-unit-end.html'
+        # Get contents of HTML template file
+        template_string += get_template(filename=template_unit_end_filename)
+
 
     template_end_filename = 'overview-template-end.html'
     # Get contents of HTML template file
@@ -245,8 +250,8 @@ if __name__ == "__main__":
     # So far, we're only doing Level 1, but in the future, we'll have to deal
     #  with the others
     levels = [1, 2, 3, 4, 5]
-    # units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-    units = [1, 2, 3]
+    units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    # units = [1, 2, 3]
     # units = [4, 6, 10, 14]
     lessons = [1, 2, 3, 4]
     # lessons = [2]
