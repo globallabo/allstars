@@ -2,11 +2,12 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from weasyprint import HTML
 from string import Template
+import pathlib
 
 # So far, we're only doing Level 1, but in the future, we'll have to deal
 #  with the others
-# levels = [1, 2, 3, 4]
-levels = [5]
+levels = [1, 2, 3, 4]
+# levels = [5]
 units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 lessons = [1, 2, 3, 4]
 
@@ -21,7 +22,9 @@ for level in levels:
         template_file_contents = template_file.read()
     template_string = Template(template_file_contents)
 
-    output_path = '/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/All Stars Second Edition/Proofing Documents/'
+    output_path = (pathlib.Path(__file__).parent.parent.absolute() / "output/")
+    pathlib.Path(output_path).mkdir(parents=True, exist_ok=True)
+    print(f"Output path: {output_path}")
 
     # Fetch data from Google Sheet
     scope = ["https://spreadsheets.google.com/feeds",
@@ -35,6 +38,7 @@ for level in levels:
     data = sheet.get_all_values()
 
     template_mapping = dict()
+    template_mapping["template_path"] = pathlib.Path(__file__).parent.absolute()
     template_mapping["level"] = level
 
     # initialize page counting
@@ -124,4 +128,4 @@ for level in levels:
     f_lesson = str(lesson).zfill(2)
     # with open(f'{output_path}AS{f_level}U{f_unit}L{f_lesson}.html', 'w') as htmlfile:
     #     htmlfile.write(template_filled)
-    html.write_pdf(f'{output_path}AS{f_level}-proofing.pdf')
+    html.write_pdf(f'{output_path}/AS{f_level}-proofing.pdf')

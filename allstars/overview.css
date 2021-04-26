@@ -5,21 +5,21 @@
 
 @font-face {
   font-family: "NotoSansJP-Regular";
-  src: url(file:///Users/cbunn/projects/allstars/allstars/fonts/NotoSansJP-Regular.otf)  format("opentype");
+  src: url('fonts/NotoSansJP-Regular.otf')  format("opentype");
 }
 @font-face {
   font-family: "NotoSansJP-Medium";
-  src: url(file:///Users/cbunn/projects/allstars/allstars/fonts/NotoSansJP-Medium.otf)  format("opentype");
+  src: url('fonts/NotoSansJP-Medium.otf')  format("opentype");
 }
 @font-face {
   font-family: "NotoSansJP-Bold";
-  src: url(file:///Users/cbunn/projects/allstars/allstars/fonts/NotoSansJP-Bold.otf)  format("opentype");
+  src: url('fonts/NotoSansJP-Bold.otf')  format("opentype");
 }
 
 /* Define variables */
 :root {
   --main-text-color: #333;
-  --main-font-size: 8pt;
+  --main-font-size: 6pt;
   --header-font-size: 10pt;
   --main-p-margin: 0.25rem;
   --main-line-height: 0.9rem;
@@ -48,6 +48,11 @@ body {
 
 .logo {
   width: 3cm;
+}
+
+.unit {
+  page-break-after: always;
+  page-break-inside: avoid;
 }
 
 table {

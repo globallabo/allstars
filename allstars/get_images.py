@@ -5,6 +5,7 @@ import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from zipfile import ZipFile
+from dotenv import load_dotenv
 
 output_path = "/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/images-uncropped/Level 4/"
 
@@ -22,6 +23,8 @@ webdriver_options.add_experimental_option(
 webdriver_path = "/usr/local/bin/chromedriver"
 driver = webdriver.Chrome(webdriver_path, options=webdriver_options)
 
+webdriver_path = "/usr/bin/chromedriver"
+driver = webdriver.Chrome(webdriver_path, options=webdriver_options)
 # Freepik info
 login_url = "https://www.freepik.com/profile/login"
 username = os.environ.get("FREEPIK_USERNAME")
