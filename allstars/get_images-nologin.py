@@ -4,9 +4,12 @@ import time
 import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from zipfile import ZipFile
+import requests
+import shutil
 
-output_path = "/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/images-uncropped/Level 4/"
+# from zipfile import ZipFile
+
+output_path = "/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/images-small/"
 
 # Set up Selenium Chrome Webdriver Options
 webdriver_options = Options()
@@ -22,24 +25,25 @@ webdriver_options.add_experimental_option(
 webdriver_path = "/usr/local/bin/chromedriver"
 driver = webdriver.Chrome(webdriver_path, options=webdriver_options)
 
-# Freepik info
-login_url = "https://www.freepik.com/profile/login"
-username = os.environ.get("FREEPIK_USERNAME")
-password = os.environ.get("FREEPIK_PASSWORD")
-# Log in to Freepik
-driver.get(login_url)
-driver.find_element_by_id("gr_login_username").send_keys(username)
-driver.find_element_by_id("gr_login_password").send_keys(password)
-# driver.find_element_by_id("signin_button").click()
-print("Driver Session ID:")
-print(driver.session_id)
-# Login takes a few seconds
-time.sleep(120)
+# # Freepik info
+# login_url = "https://www.freepik.com/profile/login"
+# username = os.environ.get("FREEPIK_USERNAME")
+# password = os.environ.get("FREEPIK_PASSWORD")
+# # Log in to Freepik
+# driver.get(login_url)
+# driver.find_element_by_id("gr_login_username").send_keys(username)
+# driver.find_element_by_id("gr_login_password").send_keys(password)
+# # driver.find_element_by_id("signin_button").click()
+# print("Driver Session ID:")
+# print(driver.session_id)
+# # Login takes a few seconds
+# time.sleep(120)
 
 # levels = [1, 2, 3]
 # units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-levels = [4]
-units = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+levels = [5]
+units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+# units = [1, 2, 3]
 lessons = [1, 2, 3, 4]
 
 for level in levels:
@@ -79,23 +83,40 @@ for level in levels:
             # print(request_url)
             if request_url:
                 driver.get(request_url)
-                driver.find_element_by_class_name("download-button").click()
-                # Let the file download
-                still_downloading = True
-                while still_downloading:
-                    time.sleep(20)
-                    current_files = os.listdir(output_path)
-                    print(f"numfiles: {numfiles}")
-                    print(f"current_files:")
-                    print(len(current_files))
-                    if len(current_files) == numfiles:
-                        still_downloading = False
-                old_filename = max(
-                    [output_path + f for f in os.listdir(output_path)],
-                    key=os.path.getctime,
+                img_url = driver.find_element_by_class_name("thumb").get_attribute(
+                    "src"
                 )
-                new_filename = f"AS{level}U{unit:02}L{lesson:02}-story.jpg"
-                os.rename(old_filename, os.path.join(output_path, new_filename))
+                # print(img_url)
+                r = requests.get(img_url, stream=True)
+                if r.status_code == 200:
+                    r.raw.decode_content = True
+                    filename = (
+                        f"{output_path}/AS{level}U{unit:02}L{lesson:02}-story.jpg"
+                    )
+                    with open(filename, "wb") as f:
+                        shutil.copyfileobj(r.raw, f)
+                    # print("success")
+                else:
+                    print("failure to get image")
+
+                # driver.get(request_url)
+                # driver.find_element_by_class_name("download-button").click()
+                # # Let the file download
+                # still_downloading = True
+                # while still_downloading:
+                #     time.sleep(20)
+                #     current_files = os.listdir(output_path)
+                #     print(f"numfiles: {numfiles}")
+                #     print(f"current_files:")
+                #     print(len(current_files))
+                #     if len(current_files) == numfiles:
+                #         still_downloading = False
+                # old_filename = max(
+                #     [output_path + f for f in os.listdir(output_path)],
+                #     key=os.path.getctime,
+                # )
+                # new_filename = f"AS{level}U{unit:02}L{lesson:02}-story.jpg"
+                # os.rename(old_filename, os.path.join(output_path, new_filename))
                 # with ZipFile(zip_filename, 'r') as zip_object:
                 #     # Get a list of all archived file names from the zip
                 #     list_of_filenames = zip_object.namelist()
