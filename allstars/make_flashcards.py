@@ -12,9 +12,6 @@ logger.addHandler(logging.FileHandler('/tmp/weasyprint.log'))
 
 levels = [1, 2, 3, 4]
 units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-# levels = [4]
-# units = [1]
-# units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
 for level in levels:
     # Create HTML template for image flashcards
