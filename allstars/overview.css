@@ -1,6 +1,6 @@
 @page {
   size: A3 landscape;
-  margin: 1cm 3cm;
+  margin: 1cm 2cm;
 }
 
 @font-face {
@@ -15,6 +15,8 @@
   font-family: "NotoSansJP-Bold";
   src: url('fonts/NotoSansJP-Bold.otf')  format("opentype");
 }
+
+
 
 /* Define variables */
 :root {
@@ -57,12 +59,12 @@ body {
 
 table {
   border-collapse: collapse;
-  /* border: 1pt solid #333; */
+  /* border: 0.75pt solid #333; */
   height: 90%;
   width: 100%;
 }
 th,td {
-  border: 1pt solid #999;
+  border: 0.75pt solid #999;
   padding: 2pt;
   vertical-align: middle;
 }

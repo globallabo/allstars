@@ -244,6 +244,9 @@ def main(levels: list, units: list, lessons: list):
     # Output PDF
     output_filename = f"{output_path}/overview.pdf"
     output_pdf(contents=template_string, filename=output_filename)
+    # html_output_filename = f"{output_path}/overview.html"
+    # with open(html_output_filename, "w") as writer:
+    #     writer.write(template_string)
 
 
 if __name__ == "__main__":
