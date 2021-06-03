@@ -8,6 +8,21 @@ import pathlib
 import logging
 
 
+def add_jp_wordbreaks(text: str) -> str:
+    wbrtag = "<wbr>"
+    find_strs = [" ", "（"]
+    for find_str in find_strs:
+        text = text.replace(find_str, wbrtag + find_str)
+    return text
+
+def replace_jp_spaces(text: str) -> str:
+    find_space = " "
+    new_space = " <wbr>"
+    if find_space in text:
+        text = text.replace(find_space, new_space)
+    return text
+
+
 # Get data from google Sheet (one level at a time)
 def get_data_for_level(level: str) -> list[str]:
     # Fetch data from Google Sheet
@@ -28,14 +43,17 @@ def get_data_for_level(level: str) -> list[str]:
 
 
 # Create template mapping for one lesson at a time
-def create_template_mapping(data: list, level: int, unit: int) -> dict[str, str]:
+def create_template_mapping(data: list, level: int, unit: int, lesson: int = None, language: str = "english") -> dict[str, str]:
     # Set the row based on the unit and lesson
     row = 1 + ((unit - 1) * 12)
     column = 4
+    if language == "hiragana":
+        row = row + 1
 
     # Create substitution mapping
     template_mapping = dict()
     template_mapping["template_path"] = pathlib.Path(__file__).parent.absolute()
+    template_mapping["language"] = language
     template_mapping["level"] = level
     # This is used for the page header:
     template_mapping["unit"] = unit
@@ -67,6 +85,11 @@ def create_template_mapping(data: list, level: int, unit: int) -> dict[str, str]
     template_mapping["vocab8"] = data[row+3][column+3] \
         if '/' not in data[row+3][column+3] \
         else f'<ul><li>{data[row+3][column+3].split(sep="/")[0]}</li><li>{data[row+3][column+3].split(sep="/")[1]}</li></ul>'
+    
+    if language == "hiragana":
+        for num in [1, 2, 3, 4, 5, 6, 7, 8]:
+            template_mapping[f"vocab{num}"] = add_jp_wordbreaks(template_mapping[f"vocab{num}"])
+    
     return template_mapping
 
 
@@ -113,13 +136,18 @@ def main(levels: list, units: list):
 
             # Create HTML templates
             words_template_filename = "flashcards-words-template.html"
+            hiragana_template_filename = "flashcards-words-template.html"
             images_template_filename = "flashcards-images-template.html"
             # Get contents of HTML template files
             words_template_file_contents = get_template(filename=words_template_filename)
+            hiragana_template_file_contents = get_template(filename=hiragana_template_filename)
             images_template_file_contents = get_template(filename=images_template_filename)
             # create mapping dicts
             words_template_mapping = create_template_mapping(
                 data=data, level=level, unit=unit
+            )
+            hiragana_template_mapping = create_template_mapping(
+                data=data, level=level, unit=unit, language = "hiragana"
             )
             images_template_mapping = create_template_mapping(
                 data=data, level=level, unit=unit
@@ -128,15 +156,20 @@ def main(levels: list, units: list):
             words_template_filled = fill_template(
                 template=words_template_file_contents, template_mapping=words_template_mapping
             )
+            hiragana_template_filled = fill_template(
+                template=words_template_file_contents, template_mapping=hiragana_template_mapping
+            )
             images_template_filled = fill_template(
                 template=images_template_file_contents, template_mapping=images_template_mapping
             )
 
             f_level = str(level)
             f_unit = str(unit).zfill(2)
+            # Output PDFs
             words_output_filename = f"{output_path}/AS{f_level}U{f_unit}-word_flashcards.pdf"
-            # Output PDF
             output_pdf(contents=words_template_filled, filename=words_output_filename)
+            hiragana_output_filename = f"{output_path}/AS{f_level}U{f_unit}-hiragana_flashcards.pdf"
+            output_pdf(contents=hiragana_template_filled, filename=hiragana_output_filename)
             # There are only image-based flashcards for Level 1
             if level == 1:
                 images_output_filename = f"{output_path}/AS{f_level}U{f_unit}-image_flashcards.pdf"
