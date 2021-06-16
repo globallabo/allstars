@@ -218,7 +218,7 @@ def main(levels: list, units: list, lessons: list):
         # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/unit1-output/Level {level}/'
         # output_path = f'/Users/cbunn/Documents/Employment/5 Star/Google Drive/All Stars Second Edition/test-output/Level {level}/'
         output_path = (
-            pathlib.Path(__file__).parent.parent.absolute() / f"output/Level {level}/"
+            pathlib.Path(__file__).parent.parent.absolute() / f"output/Worksheets/Level {level}/"
         )
         pathlib.Path(output_path).mkdir(parents=True, exist_ok=True)
         print(f"Output path: {output_path}")

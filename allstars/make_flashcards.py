@@ -87,11 +87,11 @@ def create_template_mapping(data: list, level: int, unit: int, lesson: int = Non
     template_mapping["vocab8"] = data[row+3][column+3] \
         if '/' not in data[row+3][column+3] \
         else f'<ul><li>{data[row+3][column+3].split(sep="/")[0]}</li><li>{data[row+3][column+3].split(sep="/")[1]}</li></ul>'
-    
+
     if language == "hiragana":
         for num in [1, 2, 3, 4, 5, 6, 7, 8]:
             template_mapping[f"vocab{num}"] = add_jp_wordbreaks(template_mapping[f"vocab{num}"])
-    
+
     return template_mapping
 
 
@@ -122,7 +122,7 @@ def main(levels: list, units: list):
         print(f"Level {level}")
 
         output_path = (
-            pathlib.Path(__file__).parent.parent.absolute() / f"output/flashcards/Level {level}/"
+            pathlib.Path(__file__).parent.parent.absolute() / f"output/Flashcards/Level {level}/"
         )
         pathlib.Path(output_path).mkdir(parents=True, exist_ok=True)
         print(f"Output path: {output_path}")
@@ -130,7 +130,7 @@ def main(levels: list, units: list):
         data = get_data_for_level(level)
         if not data:
             print("Cannot access Google Sheet data.")
-            return        
+            return
 
         # Loop through all Units and Lessons
         for unit in units:

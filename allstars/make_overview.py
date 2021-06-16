@@ -189,7 +189,7 @@ def main(levels: list, units: list, lessons: list):
     data= dict()
     for level in levels:
         data[level] = get_data_for_level(level)
-    
+
     # Start HTML template
     template_start_filename = 'overview-template-start.html'
     # Get contents of HTML template file
@@ -242,7 +242,7 @@ def main(levels: list, units: list, lessons: list):
     # Get contents of HTML template file
     template_string += get_template(filename=template_end_filename)
     # Output PDF
-    output_filename = f"{output_path}/overview.pdf"
+    output_filename = f"{output_path}/Overview.pdf"
     output_pdf(contents=template_string, filename=output_filename)
     # html_output_filename = f"{output_path}/overview.html"
     # with open(html_output_filename, "w") as writer:
