@@ -13,6 +13,8 @@ def add_jp_wordbreaks(text: str) -> str:
     find_strs = [" ", "（"]
     for find_str in find_strs:
         text = text.replace(find_str, wbrtag + find_str)
+    # spaces next to <wbr> don't always show, so use the nbsp entity
+    text = text.replace(" ", "&nbsp;")
     return text
 
 def replace_jp_spaces(text: str) -> str:
