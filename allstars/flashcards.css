@@ -4,16 +4,16 @@
 }
 
 @font-face {
-  font-family: 'ZNuscript';
-  src: url('fonts/ZNuscript.ttf')  format('truetype');
+  font-family: "ZNuscript";
+  src: url("fonts/ZNuscript.ttf") format("truetype");
 }
 @font-face {
-  font-family: 'ZNuscriptHeavy';
-  src: url('fonts/ZNuscriptHeavy.ttf')  format('truetype');
+  font-family: "ZNuscriptHeavy";
+  src: url("fonts/ZNuscriptHeavy.ttf") format("truetype");
 }
 @font-face {
-  font-family: 'UDDigiKyokashoNK-R';
-  src: url('fonts/UDDigiKyokashoNK-R.ttf')  format('truetype');
+  font-family: "UDDigiKyokashoNK-R";
+  src: url("fonts/UDDigiKyokashoNK-R.ttf") format("truetype");
 }
 
 section {
@@ -25,7 +25,7 @@ section {
   align-items: flex-start; */
 }
 
-.content{
+.content {
   margin: 5mm 0;
   display: flex;
   flex-direction: row;
@@ -58,12 +58,14 @@ img.logo-rotated {
   text-align: center;
 }
 .english .vocab-word {
-  font-family: 'ZNuscriptHeavy';
+  font-family: "ZNuscriptHeavy";
   font-size: 75pt;
 }
 .hiragana .vocab-word {
-  font-family: 'UDDigiKyokashoNK-R';
-  font-size: 50pt;
+  font-family: "UDDigiKyokashoNK-R";
+  font-size: 40pt;
+  line-height: 1.2em;
+  align-content: center;
 }
 .vocab-word ul {
   font-size: 55pt;
@@ -75,7 +77,7 @@ img.logo-rotated {
 }
 .vocab-word ul li:before {
   /* For a round bullet */
-  content: '\2022';
+  content: "\2022";
   display: block;
   position: relative;
   max-width: 0;
@@ -96,7 +98,7 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  font-family: 'ZNuscriptHeavy';
+  font-family: "ZNuscriptHeavy";
 }
 footer .label {
 }
