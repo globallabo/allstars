@@ -1,28 +1,27 @@
 @page {
-  size: A3 landscape;
-  margin: 1cm 2cm;
+  /* size: A3 landscape; */
+  size: 841mm 594mm;
+  margin: 2cm 4cm;
 }
 
 @font-face {
   font-family: "NotoSansJP-Regular";
-  src: url('fonts/NotoSansJP-Regular.otf')  format("opentype");
+  src: url("fonts/NotoSansJP-Regular.otf") format("opentype");
 }
 @font-face {
   font-family: "NotoSansJP-Medium";
-  src: url('fonts/NotoSansJP-Medium.otf')  format("opentype");
+  src: url("fonts/NotoSansJP-Medium.otf") format("opentype");
 }
 @font-face {
   font-family: "NotoSansJP-Bold";
-  src: url('fonts/NotoSansJP-Bold.otf')  format("opentype");
+  src: url("fonts/NotoSansJP-Bold.otf") format("opentype");
 }
-
-
 
 /* Define variables */
 :root {
   --main-text-color: #333;
-  --main-font-size: 6pt;
-  --header-font-size: 10pt;
+  --main-font-size: 12pt;
+  --header-font-size: 20pt;
   --main-p-margin: 0.25rem;
   --main-line-height: 0.9rem;
 }
@@ -30,11 +29,14 @@
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 body {
@@ -44,12 +46,17 @@ body {
   /* font-variant-ligatures: no-common-ligatures; */
   color: var(--main-text-color);
 }
+/* .en {
+  font-size: 12pt;
+  transform-origin: 0 0;
+  transform: scale(0.5);
+} */
 .jp {
   font-family: "NotoSansJP-Regular";
 }
 
 .logo {
-  width: 3cm;
+  width: 6cm;
 }
 
 .unit {
@@ -63,9 +70,10 @@ table {
   height: 90%;
   width: 100%;
 }
-th,td {
-  border: 0.75pt solid #999;
-  padding: 2pt;
+th,
+td {
+  border: 1.5pt solid #999;
+  padding: 4pt;
   vertical-align: middle;
 }
 th {
@@ -80,19 +88,19 @@ thead th {
 }
 table caption {
   text-align: left;
-  margin-left: 4cm;
-  margin-bottom: 4pt;
+  margin-left: 8cm;
+  margin-bottom: 8pt;
 }
 
 tbody tr {
-  height: 1.2cm;
+  height: 2.4cm;
 }
 
 .level {
-  width: 1.5cm;
+  width: 3cm;
 }
 .lesson {
-  width: 2cm;
+  width: 4cm;
 }
 
 /* .target-label {
@@ -104,15 +112,14 @@ tbody tr {
 
 td .en {
   display: block;
-  margin-bottom: 6pt;
+  margin-bottom: 12pt;
 }
 
 .level5 .vocab {
   display: none;
 }
 
-
 .blank {
-  letter-spacing: -2pt;
-  margin-right: 1pt;
+  letter-spacing: -4pt;
+  margin-right: 2pt;
 }

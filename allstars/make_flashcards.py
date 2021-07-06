@@ -1,5 +1,6 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+
 # from pprint import pprint
 from weasyprint import HTML
 from weasyprint.fonts import FontConfiguration
@@ -16,6 +17,7 @@ def add_jp_wordbreaks(text: str) -> str:
     # spaces next to <wbr> don't always show, so use the nbsp entity
     text = text.replace(" ", "&nbsp;")
     return text
+
 
 def replace_jp_spaces(text: str) -> str:
     find_space = " "
@@ -45,7 +47,9 @@ def get_data_for_level(level: str) -> list[str]:
 
 
 # Create template mapping for one lesson at a time
-def create_template_mapping(data: list, level: int, unit: int, lesson: int = None, language: str = "english") -> dict[str, str]:
+def create_template_mapping(
+    data: list, level: int, unit: int, lesson: int = None, language: str = "english"
+) -> dict[str, str]:
     # Set the row based on the unit and lesson
     row = 1 + ((unit - 1) * 12)
     column = 4
@@ -63,34 +67,52 @@ def create_template_mapping(data: list, level: int, unit: int, lesson: int = Non
     template_mapping["unit_zfill"] = str(unit).zfill(2)
 
     # set vocab vars
-    template_mapping["vocab1"] = data[row][column] \
-        if '/' not in data[row][column] \
+    template_mapping["vocab1"] = (
+        data[row][column]
+        if "/" not in data[row][column]
         else f'<ul><li>{data[row][column].split(sep="/")[0]}</li><li>{data[row][column].split(sep="/")[1]}</li></ul>'
-    template_mapping["vocab2"] = data[row][column+1] \
-        if '/' not in data[row][column+1] \
+    )
+    template_mapping["vocab2"] = (
+        data[row][column + 1]
+        if "/" not in data[row][column + 1]
         else f'<ul><li>{data[row][column+1].split(sep="/")[0]}</li><li>{data[row][column+1].split(sep="/")[1]}</li></ul>'
-    template_mapping["vocab3"] = data[row][column+2] \
-        if '/' not in data[row][column+2] \
+    )
+    template_mapping["vocab3"] = (
+        data[row][column + 2]
+        if "/" not in data[row][column + 2]
         else f'<ul><li>{data[row][column+2].split(sep="/")[0]}</li><li>{data[row][column+2].split(sep="/")[1]}</li></ul>'
-    template_mapping["vocab4"] = data[row][column+3] \
-        if '/' not in data[row][column+3] \
+    )
+    template_mapping["vocab4"] = (
+        data[row][column + 3]
+        if "/" not in data[row][column + 3]
         else f'<ul><li>{data[row][column+3].split(sep="/")[0]}</li><li>{data[row][column+3].split(sep="/")[1]}</li></ul>'
-    template_mapping["vocab5"] = data[row+3][column] \
-        if '/' not in data[row+3][column] \
+    )
+    template_mapping["vocab5"] = (
+        data[row + 3][column]
+        if "/" not in data[row + 3][column]
         else f'<ul><li>{data[row+3][column].split(sep="/")[0]}</li><li>{data[row+3][column].split(sep="/")[1]}</li></ul>'
-    template_mapping["vocab6"] = data[row+3][column+1] \
-        if '/' not in data[row+3][column+1] \
+    )
+    template_mapping["vocab6"] = (
+        data[row + 3][column + 1]
+        if "/" not in data[row + 3][column + 1]
         else f'<ul><li>{data[row+3][column+1].split(sep="/")[0]}</li><li>{data[row+3][column+1].split(sep="/")[1]}</li></ul>'
-    template_mapping["vocab7"] = data[row+3][column+2] \
-        if '/' not in data[row+3][column+2] \
+    )
+    template_mapping["vocab7"] = (
+        data[row + 3][column + 2]
+        if "/" not in data[row + 3][column + 2]
         else f'<ul><li>{data[row+3][column+2].split(sep="/")[0]}</li><li>{data[row+3][column+2].split(sep="/")[1]}</li></ul>'
-    template_mapping["vocab8"] = data[row+3][column+3] \
-        if '/' not in data[row+3][column+3] \
+    )
+    template_mapping["vocab8"] = (
+        data[row + 3][column + 3]
+        if "/" not in data[row + 3][column + 3]
         else f'<ul><li>{data[row+3][column+3].split(sep="/")[0]}</li><li>{data[row+3][column+3].split(sep="/")[1]}</li></ul>'
+    )
 
     if language == "hiragana":
         for num in [1, 2, 3, 4, 5, 6, 7, 8]:
-            template_mapping[f"vocab{num}"] = add_jp_wordbreaks(template_mapping[f"vocab{num}"])
+            template_mapping[f"vocab{num}"] = add_jp_wordbreaks(
+                template_mapping[f"vocab{num}"]
+            )
 
     return template_mapping
 
@@ -101,10 +123,12 @@ def get_template(filename: str) -> str:
         template_file_contents = template_file.read()
     return template_file_contents
 
+
 # Substitute vars in template string
 def fill_template(template: str, template_mapping: dict[str, str]) -> str:
     template_string = Template(template)
     return template_string.safe_substitute(template_mapping)
+
 
 # Output PDF
 def output_pdf(contents: str, filename: str):
@@ -122,7 +146,8 @@ def main(levels: list, units: list):
         print(f"Level {level}")
 
         output_path = (
-            pathlib.Path(__file__).parent.parent.absolute() / f"output/Flashcards/Level {level}/"
+            pathlib.Path(__file__).parent.parent.absolute()
+            / f"output/Flashcards/Level {level}/"
         )
         pathlib.Path(output_path).mkdir(parents=True, exist_ok=True)
         print(f"Output path: {output_path}")
@@ -134,52 +159,73 @@ def main(levels: list, units: list):
 
         # Loop through all Units and Lessons
         for unit in units:
-            print(f'Unit: {unit}')
+            print(f"Unit: {unit}")
 
             # Create HTML templates
             words_template_filename = "flashcards-words-template.html"
             hiragana_template_filename = "flashcards-words-template.html"
             images_template_filename = "flashcards-images-template.html"
             # Get contents of HTML template files
-            words_template_file_contents = get_template(filename=words_template_filename)
-            hiragana_template_file_contents = get_template(filename=hiragana_template_filename)
-            images_template_file_contents = get_template(filename=images_template_filename)
+            words_template_file_contents = get_template(
+                filename=words_template_filename
+            )
+            hiragana_template_file_contents = get_template(
+                filename=hiragana_template_filename
+            )
+            images_template_file_contents = get_template(
+                filename=images_template_filename
+            )
             # create mapping dicts
             words_template_mapping = create_template_mapping(
                 data=data, level=level, unit=unit
             )
             hiragana_template_mapping = create_template_mapping(
-                data=data, level=level, unit=unit, language = "hiragana"
+                data=data, level=level, unit=unit, language="hiragana"
             )
             images_template_mapping = create_template_mapping(
                 data=data, level=level, unit=unit
             )
             # Substitute
             words_template_filled = fill_template(
-                template=words_template_file_contents, template_mapping=words_template_mapping
+                template=words_template_file_contents,
+                template_mapping=words_template_mapping,
             )
             hiragana_template_filled = fill_template(
-                template=words_template_file_contents, template_mapping=hiragana_template_mapping
+                template=words_template_file_contents,
+                template_mapping=hiragana_template_mapping,
             )
             images_template_filled = fill_template(
-                template=images_template_file_contents, template_mapping=images_template_mapping
+                template=images_template_file_contents,
+                template_mapping=images_template_mapping,
             )
 
             f_level = str(level)
             f_unit = str(unit).zfill(2)
             # Output PDFs
-            words_output_filename = f"{output_path}/AS{f_level}U{f_unit}-word_flashcards.pdf"
+            words_output_filename = (
+                f"{output_path}/AS{f_level}U{f_unit}-word_flashcards.pdf"
+            )
             output_pdf(contents=words_template_filled, filename=words_output_filename)
-            hiragana_output_filename = f"{output_path}/AS{f_level}U{f_unit}-hiragana_flashcards.pdf"
-            output_pdf(contents=hiragana_template_filled, filename=hiragana_output_filename)
+            hiragana_output_filename = (
+                f"{output_path}/AS{f_level}U{f_unit}-hiragana_flashcards.pdf"
+            )
+            output_pdf(
+                contents=hiragana_template_filled, filename=hiragana_output_filename
+            )
             # There are only image-based flashcards for Level 1
             if level == 1:
-                images_output_filename = f"{output_path}/AS{f_level}U{f_unit}-image_flashcards.pdf"
+                images_output_filename = (
+                    f"{output_path}/AS{f_level}U{f_unit}-image_flashcards.pdf"
+                )
                 # Output PDF
-                output_pdf(contents=images_template_filled, filename=images_output_filename)
+                output_pdf(
+                    contents=images_template_filled, filename=images_output_filename
+                )
 
 
 if __name__ == "__main__":
-    levels = [1, 2, 3, 4]
-    units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    # levels = [1, 2, 3, 4]
+    # units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    levels = [3]
+    units = [14]
     main(levels, units)
