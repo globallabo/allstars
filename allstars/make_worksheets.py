@@ -1,11 +1,11 @@
+import logging
+import pathlib
+from string import Template
+
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-
 # from pprint import pprint
 from weasyprint import HTML
-from string import Template
-import pathlib
-import logging
 
 
 def make_blank_string(length, max_length=27):
@@ -39,7 +39,8 @@ def get_data_for_level(level: str) -> list[str]:
     try:
         creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
         client = gspread.authorize(creds)
-        sheet = client.open("all_stars_revised_0128").worksheet(f"Level {level}")
+        # sheet = client.open("all_stars_revised_0128").worksheet(f"Level {level}")
+        sheet = client.open("All Stars Contents").worksheet(f"Level {level}")
         return sheet.get_all_values()
     except FileNotFoundError as fnf_error:
         print(fnf_error)
@@ -59,7 +60,7 @@ def create_template_mapping(
     template_mapping["template_path"] = pathlib.Path(__file__).parent.absolute()
     template_mapping["level"] = level
     # These are used for the page header
-    template_mapping["unit"] = unit
+    template_mapping["unit"] = "Christmas"
     template_mapping["lesson"] = lesson
     # These are used for image naming
     template_mapping["unit_zfill"] = str(unit).zfill(2)
@@ -256,7 +257,10 @@ def main(levels: list, units: list, lessons: list):
 if __name__ == "__main__":
     # So far, we're only doing Level 1, but in the future, we'll have to deal
     #  with the others
-    levels = [1, 2, 3, 4, 5]
-    units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-    lessons = [1, 2, 3, 4]
+    # levels = [1, 2, 3, 4, 5]
+    # units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    # lessons = [1, 2, 3, 4]
+    levels = [1]
+    units = [18]
+    lessons = [1]
     main(levels, units, lessons)
